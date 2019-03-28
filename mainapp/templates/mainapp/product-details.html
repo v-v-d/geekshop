@@ -1,0 +1,84 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block container %}
+    <header class="header padding-site">
+        {% include 'mainapp/includes/inc_header.html' %}
+    </header>
+    <main class="main">
+        <ul class="product-page-nav">
+            {% for link in links_menu %}
+                <li class="product-page-nav-list"><a href="#" class="product-page-nav-link">{{ link.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <section class="product-page padding-site">
+            <article class="product-slider">
+                <a href="{% static 'img/slider1.jpg' %}" target="_blank">
+                    <div class="product-img" style="background-image: url({% static 'img/slider1.jpg' %})"></div>
+                </a>
+                <div class="product-mini-img-box">
+                    <a href="{% static 'img/controll.jpg' %}" target="_blank">
+                        <div class="product-mini-img" style="background-image: url({% static 'img/controll.jpg' %})"></div>
+                    </a>
+                    <a href="{% static 'img/controll11.jpg' %}" target="_blank">
+                        <div class="product-mini-img" style="background-image: url({% static 'img/controll11.jpg' %})"></div>
+                    </a>
+                    <a href="{% static 'img/controll2.jpg' %}" target="_blank">
+                        <div class="product-mini-img" style="background-image: url({% static 'img/controll2.jpg' %})"></div>
+                    </a>
+                </div>
+            </article>
+            <article class="product-description">
+                <h2 class="product-name">Fishnet Chair</h2>
+                <h3 class="product-second-name">Hot Deal</h3>
+                <div class="product-price">
+                    <p class="price-currency">$ </p>
+                    <p class="price-num">36.7</p>
+                    <p class="price-value">/sq</p>
+                </div>
+                <a href="#" class="product-button">order&nbsp;us <img class="product-button-arrow" src="{% static 'img/arrow-product.svg' %}" alt="arrow"></a>
+                <div class="product-details">
+                    <p class="paragraph">The majesty of&nbsp;Mountains&nbsp;&mdash; Ugmonk style.</p>
+                    <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do&nbsp;eiusmod tempor incididunt ut&nbsp;labore</p>
+                    <p class="paragraph"> et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad&nbsp;minim veniam, quis nostrud exercitation ullamco laboris nisi ut&nbsp;aliquip ex&nbsp;ea&nbsp;commodo consequat.</p>
+                    <p class="paragraph">Duis aute irure dolor in&nbsp;reprehenderit in&nbsp;voluptate velit esse cillum dolore eu&nbsp;fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                    <!--
+        <p class="paragraph"> sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque </p>
+        <p class="paragraph">laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae </p>
+        <p class="paragraph">vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam </p>
+        <p class="paragraph">est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+-->
+                </div>
+            </article>
+        </section>
+        <section class="related-products padding-site">
+            <section class="related-products-menu">
+                <p class="related-products-text">Related Products</p>
+                <a href="#" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+            </section>
+            <section class="related-products-content">
+                <article class="related-product" style="background-image: url({% static 'img/product-11.jpg' %})">
+                    <div class="product-in-box-content">
+                        <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <h3 class="product-in-box-name">Fishnet Chair</h3>
+                        <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                    </div>
+                </article>
+                <article class="related-product" style="background-image: url({% static 'img/product-21.jpg' %})">
+                    <div class="product-in-box-content">
+                        <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <h3 class="product-in-box-name">Fishnet Chair</h3>
+                        <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                    </div>
+                </article>
+                <article class="related-product" style="background-image: url({% static 'img/product-31.jpg' %})">
+                    <div class="product-in-box-content">
+                        <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <h3 class="product-in-box-name">Fishnet Chair</h3>
+                        <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                    </div>
+                </article>
+            </section>
+        </section>
+    </main>
+{% endblock %}
