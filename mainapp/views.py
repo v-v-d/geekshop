@@ -1,14 +1,18 @@
 from django.shortcuts import render
+from .models import ProductCategory, Product
 
 
 def main(request):
+    products_list = [product for i, product in enumerate(Product.objects.all()) if i != 1]   # Hardcode detected
     context = {
-        'page_title': 'Interior - main'
+        'page_title': 'Interior - main',
+        'products': products_list,
     }
     return render(request, 'mainapp/index.html', context)
 
 
-def products(request):
+def products(request, pk=None):
+    # Product.object.get(pk=pk)
     context = {
         'page_title': 'Interior - products'
     }

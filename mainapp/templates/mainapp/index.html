@@ -30,34 +30,15 @@
             <a href="#" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </article>
         <section class="featured-product-box">
-            <article class="featured-product-in-box" style="background-image: url({% static 'img/product-1.jpg' %})">
-                <div class="product-in-box-content">
-                    <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                    <h3 class="product-in-box-name">Fishnet Chair</h3>
-                    <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                </div>
-            </article>
-            <article class="featured-product-in-box" style="background-image: url({% static 'img/product-2.jpg' %})">
-                <div class="product-in-box-content">
-                    <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                    <h3 class="product-in-box-name">Fishnet Chair</h3>
-                    <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                </div>
-            </article>
-            <article class="featured-product-in-box" style="background-image: url({% static 'img/product-3.jpg' %})">
-                <div class="product-in-box-content">
-                    <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                    <h3 class="product-in-box-name">Fishnet Chair</h3>
-                    <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                </div>
-            </article>
-            <article class="featured-product-in-box" style="background-image: url({% static 'img/product-4.jpg' %})">
-                <div class="product-in-box-content">
-                    <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                    <h3 class="product-in-box-name">Fishnet Chair</h3>
-                    <p class="product-in-box-details">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                </div>
-            </article>
+            {% for product in products %}
+                <article class="featured-product-in-box" style="background-image: url('/media/{{ product.image }}')">
+                    <div class="product-in-box-content">
+                        <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <h3 class="product-in-box-name">{{ product.name }}</h3>
+                        <p class="product-in-box-details">{{ product.short_desc }}</p>
+                    </div>
+                </article>
+            {% endfor %}
         </section>
     </section>
     <section class="promo-product">
