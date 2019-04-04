@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Chairs",
+    "description": "This is a description for Chairs category"
+  },
+  {
+    "name": "Tables",
+    "description": "This is a description for Tables category"
+  },
+  {
+    "name": "Lamps",
+    "description": "This is a description for Lamps category"
+  },
+  {
+    "name": "Clocks",
+    "description": "This is a description for Clocks category"
+  },
+  {
+    "name": "Sofas",
+    "description": "This is a description for Sofas category"
+  },
+  {
+    "name": "Housewares",
+    "description": "This is a description for Housewares category"
+  },
+  {
+    "name": "Armchairs",
+    "description": "This is a description for Armchairs category"
+  }
+]

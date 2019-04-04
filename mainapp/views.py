@@ -3,7 +3,9 @@ from .models import ProductCategory, Product
 
 
 def main(request):
-    products_list = [product for i, product in enumerate(Product.objects.all()) if i != 1]   # Hardcode detected
+    # products_list = [product for i, product in enumerate(Product.objects.all()) if i != 1]   # Hardcode detected
+    # products_list = [product for product in Product.objects.all()]
+    products_list = Product.objects.all()
     context = {
         'page_title': 'Interior - main',
         'products': products_list,

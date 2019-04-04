@@ -2,9 +2,9 @@ from django.db import models
 
 
 class ProductCategory(models.Model):
-    # class Meta:
-    #     verbose_name = 'Product category'
-    #     verbose_name_plural = 'Product categories'
+    class Meta:
+        verbose_name = 'Product category'
+        verbose_name_plural = 'Product categories'
 
     name = models.CharField(verbose_name='Category name', max_length=64, unique=True)
     description = models.TextField(verbose_name='Category description', blank=True)
@@ -14,9 +14,9 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    # class Meta:
-    #     verbose_name = 'Product'
-    #     verbose_name_plural = 'Products'
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
 
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     name = models.CharField(verbose_name='Product name', max_length=128)
