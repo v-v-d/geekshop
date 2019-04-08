@@ -1,0 +1,34 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block container %}
+    <section class="product-top padding-site">
+        <header class="header">
+            {% include 'mainapp/includes/inc_header.html' %}
+        </header>
+        <h2 class="product-top-title">Our Products Range</h2>
+    </section>
+    <div class="products padding-site">
+        {% include 'mainapp/includes/inc_products_nav.html' %}
+        <h2 class="product-list-title">Category: "{{ category.name|title }}"</h2>
+{#        <h2>{{ chto_to }}</h2>#}
+        <section class="products-content">
+
+            {% for product in products %}
+
+                <article class="product" style="background-image: url('/media/{{ product.image }}')">
+                <div class="product-in-box-content">
+                    <a class="product-in-box-link" href="{% url 'basket:add' product.pk %}">
+                        <img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow">
+                    </a>
+                    <h3 class="product-in-box-name">{{ product.name }}</h3>
+                    <p class="product-in-box-details">{{ product.description }}</p>
+                </div>
+            </article>
+
+            {% endfor %}
+
+        </section>
+    </div>
+
+{% endblock %}

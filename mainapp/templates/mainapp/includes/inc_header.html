@@ -13,13 +13,23 @@
     <li><a href="{% url 'contacts' %}"
            class="menu-link {% if request.resolver_match.url_name == 'contacts' %}menu-link-active{% endif %}">CONTACT</a></li>
     <li><a href="#" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a></li>
+    <a href = "{% url 'basket:view' %}" class = "menu-basket"><img src="{% static 'img/bag.svg' %}" alt="basket"></a>
     {% if user.is_authenticated %}
-        <li><a class="menu-link" href = "{% url 'auth:edit' %}">{{ user.username|default:'User' }} (edit)</a></li>
-    {% endif %}
-    {% if user.is_authenticated %}
-        <li><a class="menu-link" href = "{% url 'auth:logout' %}">logout</a></li>
+        <span class="menu-basket-counter">{% if basket %}
+            qty: {{ products_total_quantity|floatformat:0 }} pcs
+            <br>
+            price: {{ products_total_price }}$
+        {% endif %}</span>
+        <span class="menu-auth">
+            <a class="menu-auth-link" href = "{% url 'auth:edit' %}">{{ user.username|default:'User' }} (edit)</a>
+            <br>
+            <a class="menu-auth-link" href = "{% url 'auth:logout' %}">logout</a>
+        </span>
     {% else %}
-        <li><a class="menu-link" href = "{% url 'auth:login' %}">login</a></li>
-        <li><a class="menu-link" href = "{% url 'auth:register' %}">register</a></li>
+        <span class="menu-auth">
+            <a class="menu-auth-link" href = "{% url 'auth:login' %}">login</a>
+            <br>
+            <a class="menu-auth-link" href = "{% url 'auth:register' %}">register</a>
+        </span>
     {% endif %}
 </ul>

@@ -1,30 +1,22 @@
 [
   {
-    "name": "Chairs",
-    "description": "This is a description for Chairs category"
+    "name": "Home",
+    "description": "This is a description for HOME category"
   },
   {
-    "name": "Tables",
-    "description": "This is a description for Tables category"
+    "name": "Office",
+    "description": "This is a description for OFFICE category"
   },
   {
-    "name": "Lamps",
-    "description": "This is a description for Lamps category"
+    "name": "Furniture",
+    "description": "This is a description for FURNITURE category"
   },
   {
-    "name": "Clocks",
-    "description": "This is a description for Clocks category"
+    "name": "Modern",
+    "description": "This is a description for MODERN category"
   },
   {
-    "name": "Sofas",
-    "description": "This is a description for Sofas category"
-  },
-  {
-    "name": "Housewares",
-    "description": "This is a description for Housewares category"
-  },
-  {
-    "name": "Armchairs",
-    "description": "This is a description for Armchairs category"
+    "name": "Classic",
+    "description": "This is a description for CLASSIC category"
   }
 ]

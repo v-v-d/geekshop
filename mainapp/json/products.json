@@ -1,37 +1,91 @@
 [
   {
-    "category": "Lamps",
-    "name": "Fishnet lamp",
+    "category": "Modern",
+    "name": "Modern lamp",
     "image": "products_images/product-1.jpg",
-    "short_desc": "This is a short description for Fishnet lamp product",
-    "description": "This is a full description for Fishnet lamp product",
+    "short_desc": "This is a short description for Modern lamp product",
+    "description": "This is a full description for Modern lamp product",
     "price": 250,
     "quantity": 52
   },
   {
-    "category": "Armchairs",
-    "name": "Fishnet Armchair",
+    "category": "Classic",
+    "name": "Classic Armchair",
     "image": "products_images/product-2.jpg",
-    "short_desc": "This is a short description for Fishnet Armchair product",
-    "description": "This is a full description for Fishnet Armchair product",
+    "short_desc": "This is a short description for Home Classic product",
+    "description": "This is a full description for Home Classic product",
     "price": 799,
     "quantity": 12
   },
   {
-    "category": "Housewares",
-    "name": "Fishnet Housewares",
+    "category": "Home",
+    "name": "Home Housewares",
     "image": "products_images/product-3.jpg",
-    "short_desc": "This is a short description for Fishnet Housewares product",
-    "description": "This is a full description for Fishnet Housewares product",
+    "short_desc": "This is a short description for Home Housewares product",
+    "description": "This is a full description for Home Housewares product",
     "price": 199,
     "quantity": 46
   },
   {
-    "category": "Chairs",
-    "name": "Fishnet Chair",
+    "category": "Office",
+    "name": "Office Chair",
     "image": "products_images/product-4.jpg",
-    "short_desc": "This is short description for Fishnet Chair product",
-    "description": "This is full description for Fishnet Chair product",
+    "short_desc": "This is a short description for Office Chair product",
+    "description": "This is full description for Office Chair product",
+    "price": 520,
+    "quantity": 21
+  },
+  {
+    "category": "Modern",
+    "name": "Modern Chandelier",
+    "image": "products_images/product-11.jpg",
+    "short_desc": "This is a short description for Modern Chandelier product",
+    "description": "This is full description for Modern Chandelier product",
+    "price": 520,
+    "quantity": 21
+  },
+  {
+    "category": "Home",
+    "name": "Home Chair",
+    "image": "products_images/product-21.jpg",
+    "short_desc": "This is a short description for Home Chair product",
+    "description": "This is full description for Home Chair product",
+    "price": 520,
+    "quantity": 21
+  },
+  {
+    "category": "Home",
+    "name": "Home Lamp",
+    "image": "products_images/product-31.jpg",
+    "short_desc": "This is a short description for Home Lamp product",
+    "description": "This is full description for Home Lamp product",
+    "price": 520,
+    "quantity": 21
+  },
+  {
+    "category": "Classic",
+    "name": "Classic Lamp",
+    "image": "products_images/product-41.jpg",
+    "short_desc": "This is a short description for Classic Lamp product",
+    "description": "This is full description for Classic Lamp product",
+    "price": 520,
+    "quantity": 21
+  },
+  {
+    "category": "Furniture",
+    "name": "Furniture Pounder",
+    "image": "products_images/product-5.jpg",
+    "short_desc": "This is a short description for Furniture Pounder product",
+    "description": "This is full description for Furniture Pounder product",
+    "price": 520,
+    "quantity": 21
+  },
+  {
+    "category": "Furniture",
+    "name": "Furniture Vase",
+    "image": "products_images/product-6.jpg",
+    "short_desc": "This is a short description for Furniture Vase product",
+    "description": "This is full description for Furniture Vase product",
     "price": 520,
     "quantity": 21
   }

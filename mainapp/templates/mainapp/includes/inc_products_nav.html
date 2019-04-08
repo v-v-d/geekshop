@@ -1,8 +1,38 @@
-<ul class="products-nav">
-    <li class="products-nav-list"><a class="products-nav-link-active" href="#">All</a></li>
-    <li class="products-nav-list"><a class="products-nav-link" href="#">HOME</a></li>
-    <li class="products-nav-list"><a class="products-nav-link" href="#">OFFICE</a></li>
-    <li class="products-nav-list"><a class="products-nav-link" href="#">FURNITURE</a></li>
-    <li class="products-nav-list"><a class="products-nav-link" href="#">MODERN</a></li>
-    <li class="products-nav-list"><a class="products-nav-link" href="#">CLASSIC</a></li>
-</ul>
+{% if request.resolver_match.namespace == 'products' %}
+
+    <ul class="products-nav">
+        <li class="products-nav-list">
+            <a class="products-nav-link{% if request.resolver_match.kwargs.pk == '0' %}-active{% endif %}"
+            href="{% url 'products:category' 0 %}">All</a>
+        </li>
+
+        {% for link in links_menu %}
+
+            <li class="products-nav-list">
+                <a class="products-nav-link{% if request.resolver_match.kwargs.pk|add:'0' == link.pk %}-active{% endif %}"
+                href="{% url 'products:category' link.pk %}">{{ link.name }}</a>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+{% else %}
+
+    <ul class="product-page-nav">
+        <li class="product-page-nav-list">
+            <a class="product-page-nav-link{% if request.resolver_match.kwargs.pk == '0' %}-active{% endif %}"
+            href="{% url 'products:category' 0 %}">All</a>
+        </li>
+
+        {% for link in links_menu %}
+
+            <li class="product-page-nav-list">
+                <a class="product-page-nav-link{% if request.resolver_match.kwargs.pk|add:'0' == link.pk %}-active{% endif %}"
+                href="{% url 'products:category' link.pk %}">{{ link.name }}</a>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
