@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Home",
+    "description": "This is a description for HOME category"
+  },
+  {
+    "name": "Office",
+    "description": "This is a description for OFFICE category"
+  },
+  {
+    "name": "Furniture",
+    "description": "This is a description for FURNITURE category"
+  },
+  {
+    "name": "Modern",
+    "description": "This is a description for MODERN category"
+  },
+  {
+    "name": "Classic",
+    "description": "This is a description for CLASSIC category"
+  }
+]

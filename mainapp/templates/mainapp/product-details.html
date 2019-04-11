@@ -6,11 +6,7 @@
     {% include 'mainapp/includes/inc_header.html' %}
 </header>
 <main class="main">
-    <ul class="product-page-nav">
-        {% for link in links_menu %}
-        <li class="product-page-nav-list"><a href="#" class="product-page-nav-link">{{ link.name }}</a></li>
-        {% endfor %}
-    </ul>
+    {% include 'mainapp/includes/inc_products_nav.html' %}
     <section class="product-page padding-site">
         <article class="product-slider">
             <a href="{% static 'img/slider1.jpg' %}" target="_blank">
