@@ -8,20 +8,26 @@
            class="menu-link {% if request.resolver_match.namespace == 'products' %}menu-link-active{% endif %}">PRODUCTS</a></li>
     <li><a href="#"
            class="menu-link {% if request.resolver_match.url_name == '#' %}menu-link-active{% endif %}">HISTORY</a></li>
-    <li><a href="{% url 'product-details' %}"
-           class="menu-link {% if request.resolver_match.url_name == 'product-details' %}menu-link-active{% endif %}">SHOWROOM</a></li>
+    <li><a href="{% url 'showroom' %}"
+           class="menu-link {% if request.resolver_match.url_name == 'showroom' or request.resolver_match.url_name == 'product-details' %}menu-link-active{% endif %}">SHOWROOM</a></li>
     <li><a href="{% url 'contacts' %}"
            class="menu-link {% if request.resolver_match.url_name == 'contacts' %}menu-link-active{% endif %}">CONTACT</a></li>
     <li><a href="#" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a></li>
     <a href = "{% url 'basket:view' %}" class = "menu-basket"><img src="{% static 'img/bag.svg' %}" alt="basket"></a>
     {% if user.is_authenticated %}
         <span class="menu-basket-counter">{% if basket %}
-            qty: {{ products_total_quantity|floatformat:0 }} pcs
+            qty:&nbsp;{{ products_total_quantity|floatformat:0 }}&nbsp;pcs
             <br>
-            price: {{ products_total_price }}$
+            price:&nbsp;{{ products_total_price }}$
         {% endif %}</span>
         <span class="menu-auth">
-            <a class="menu-auth-link" href = "{% url 'auth:edit' %}">{{ user.username|default:'User' }} (edit)</a>
+            <a class="menu-auth-link" href = "{% url 'auth:edit' %}">
+                {% if user.username|length <= 7 %}
+                    {{ user.username|default:'User' }}&nbsp;(edit)
+                {% else %}
+                    User&nbsp;(edit)
+                {% endif %}
+            </a>
             <br>
             <a class="menu-auth-link" href = "{% url 'auth:logout' %}">logout</a>
         </span>

@@ -11,70 +11,82 @@
     {% block css %}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+              crossorigin="anonymous">
     {% endblock %}
     {% block js %}
+        <script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
+        <script src="{% static 'js/basket_scripts.js' %}"></script>
     {% endblock %}
 </head>
 
 <body>
 
-    <div class="wrapper">
-        <top class="top">
-            <div class="container">
+<div class="wrapper">
+    <top class="top">
+        <div class="container">
             {% block container %}
             {% endblock %}
-            </div>
-        </top>
-        {% block footer %}
-            <footer class="footer">
-                <div class="container">
-                    <section class="footer-top-bottom padding-site">
-                        <section class="footer-top">
-                            <article class="footer-top-contact-us">
-                                <h3 class="footer-top-contact-us-name">Contact Us</h3>
-                                <p class="footer-top-contact-us-links">132A Bridge Road Richmond VIC&nbsp;Australia.</p>
-                                <p class="footer-top-contact-us-links">Talk to&nbsp;us on&nbsp;1300&nbsp;132 info@interior.com</p>
-                            </article>
-                            <article class="footer-top-useful">
-                                <h3 class="footer-top-useful-name">Useful Information</h3>
-                                <div class="footer-top-useful-links">
-                                    <div class="footer-top-useful-links-1">
-                                        <a class="footer-top-useful-link" href="#">Sales terms</a>
-                                        <a class="footer-top-useful-link" href="#">Customer care</a>
-                                        <a class="footer-top-useful-link" href="#">Delivery</a>
-                                    </div>
-                                    <div class="footer-top-useful-links-2">
-                                        <a class="footer-top-useful-link" href="#">Architect accounts</a>
-                                        <a class="footer-top-useful-link" href="#">Careers</a>
-                                        <a class="footer-top-useful-link" href="#">Exchanges &amp;&nbsp;returns</a>
-                                    </div>
+        </div>
+    </top>
+    {% block footer %}
+        <footer class="footer">
+            <div class="container">
+                <section class="footer-top-bottom padding-site">
+                    <section class="footer-top">
+                        <article class="footer-top-contact-us">
+                            <h3 class="footer-top-contact-us-name">Contact Us</h3>
+                            <p class="footer-top-contact-us-links">132A Bridge Road Richmond VIC&nbsp;Australia.</p>
+                            <p class="footer-top-contact-us-links">Talk to&nbsp;us on&nbsp;1300&nbsp;132
+                                info@interior.com</p>
+                        </article>
+                        <article class="footer-top-useful">
+                            <h3 class="footer-top-useful-name">Useful Information</h3>
+                            <div class="footer-top-useful-links">
+                                <div class="footer-top-useful-links-1">
+                                    <a class="footer-top-useful-link" href="#">Sales terms</a>
+                                    <a class="footer-top-useful-link" href="#">Customer care</a>
+                                    <a class="footer-top-useful-link" href="#">Delivery</a>
                                 </div>
-                            </article>
-                            <article class="footer-top-subscribe">
-                                <h3 class="footer-top-subscribe-name">Let&rsquo;s Stay in&nbsp;Touch!</h3>
-                                <p class="footer-top-subscribe-details">Suscribe to&nbsp;know about our latest news, products and special offers just for suscribers.</p>
-                                <div class="footer-top-subscribe-input-block">
-                                    <input class="footer-top-subscribe-input" type="email" placeholder="your email address">
-                                    <button class="footer-top-subscribe-input-button" type="submit"><img src="{% static 'img/send.png' %}" alt="send"></button>
+                                <div class="footer-top-useful-links-2">
+                                    <a class="footer-top-useful-link" href="#">Architect accounts</a>
+                                    <a class="footer-top-useful-link" href="#">Careers</a>
+                                    <a class="footer-top-useful-link" href="#">Exchanges &amp;&nbsp;returns</a>
                                 </div>
-                            </article>
-                        </section>
-                        <section class="footer-bottom">
-                            <p class="footer-bottom-copyright">&copy;Copyright&nbsp;&mdash; INTERIOR 2016. All Rights Reserved.</p>
-                            <article class="footer-bottom-socials">
-                                <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/facebook.png' %}" alt="facebook"></a>
-                                <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/twitter.png' %}" alt="twitter"></a>
-                                <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/google+.png' %}" alt="google+"></a>
-                                <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/pinterest.png' %}" alt="pinterest"></a>
-                            </article>
-                            <p class="footer-bottom-terms">Terms &amp;&nbsp;Conditions&nbsp;/ Privacy policy &amp;&nbsp;Cookies</p>
-                        </section>
+                            </div>
+                        </article>
+                        <article class="footer-top-subscribe">
+                            <h3 class="footer-top-subscribe-name">Let&rsquo;s Stay in&nbsp;Touch!</h3>
+                            <p class="footer-top-subscribe-details">Suscribe to&nbsp;know about our latest news,
+                                products and special offers just for suscribers.</p>
+                            <div class="footer-top-subscribe-input-block">
+                                <input class="footer-top-subscribe-input" type="email" placeholder="your email address">
+                                <button class="footer-top-subscribe-input-button" type="submit"><img
+                                        src="{% static 'img/send.png' %}" alt="send"></button>
+                            </div>
+                        </article>
                     </section>
-                </div>
-            </footer>
-        {% endblock %}
-    </div>
+                    <section class="footer-bottom">
+                        <p class="footer-bottom-copyright">&copy;Copyright&nbsp;&mdash; INTERIOR 2016. All Rights
+                            Reserved.</p>
+                        <article class="footer-bottom-socials">
+                            <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/facebook.png' %}"
+                                                                                alt="facebook"></a>
+                            <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/twitter.png' %}"
+                                                                                alt="twitter"></a>
+                            <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/google+.png' %}"
+                                                                                alt="google+"></a>
+                            <a class="footer-bottom-socials-link" href="#"><img src="{% static 'img/pinterest.png' %}"
+                                                                                alt="pinterest"></a>
+                        </article>
+                        <p class="footer-bottom-terms">Terms &amp;&nbsp;Conditions&nbsp;/ Privacy policy &amp;&nbsp;Cookies</p>
+                    </section>
+                </section>
+            </div>
+        </footer>
+    {% endblock %}
+</div>
 
 </body>
 
