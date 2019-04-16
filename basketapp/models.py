@@ -22,8 +22,3 @@ class Basket(models.Model):
     def get_products_total_price_by_user(self):
         user_basket = Basket.objects.filter(user_id=self.user)
         return sum([user_basket[i].get_product_total_price for i in range(len(user_basket))])
-    #
-    # @property
-    # def get_products_total_price_by_user(self):
-    #     user_basket = Basket.objects.filter(user_id=self.user)
-    #     return sum([user_basket[i].quantity * user_basket[i].product.price for i in range(len(user_basket))])

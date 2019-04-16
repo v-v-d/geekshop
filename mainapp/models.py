@@ -8,6 +8,7 @@ class ProductCategory(models.Model):
 
     name = models.CharField(verbose_name='Category name', max_length=64, unique=True)
     description = models.TextField(verbose_name='Category description', blank=True)
+    is_active = models.BooleanField(verbose_name='active', default=True)
 
     def __str__(self):
         return self.name

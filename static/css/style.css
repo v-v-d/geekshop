@@ -1147,21 +1147,24 @@ body {
 }
 
 .menu-basket {
-    margin: 2px 15px 0;
+    margin: 2px 13px 0;
+}
+
+.menu-basket-link {
+    display: flex;
+    text-decoration: none;
 }
 
 .menu-basket-counter {
-    display: block;
+    margin: 6px 0 0 5px;
     width: auto;
     color: #43a047;
     font-size: 10px;
     font-weight: 600;
-    padding: 8px 0;
 }
 
 .menu-auth {
-    margin-top: 5px;
-    margin-left: 15px;
+    margin: 5px 0 0 13px;
     text-align: right;
     font-size: 10px;
     font-weight: 600;
@@ -1177,4 +1180,8 @@ body {
 
 .menu-auth-link:hover {
     text-decoration: underline;
+}
+
+.category_record.not_active {
+    opacity: 0.5;
 }

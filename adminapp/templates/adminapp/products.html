@@ -1,0 +1,32 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="products_list">
+        <a class="new_product" href= {% url 'admin_custom:product_create' category.pk %}>Создать новый продукт</a>
+
+        {% for object in object_list %}
+            <div class="product_record">
+                <img src="/media/{{ object.image|default:'products_images/default.jpg' }}" alt="{{ object.name }}">
+                <div class="product_name">
+                    {{ object.name|title }}
+                </div>
+                <div class="product_actions">
+                    <a href= {% url 'admin_custom:product_read' object.pk %}>подробнее</a>
+                    <a href= {% url 'admin_custom:product_update' object.pk %}>редактировать</a>
+                    <a href= {% url 'admin_custom:product_delete' object.pk %}>удалить</a>
+                </div>
+                <div class="summary">
+                    <b>цена</b>
+                    <p>{{ object.price }}$</p>
+                    <b>количество</b>
+                    <p>{{ object.quantity }}</p>
+                </div>
+                <div class="product_desc">
+                    {{ object.short_desc|title }}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
