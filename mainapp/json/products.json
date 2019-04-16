@@ -88,5 +88,50 @@
     "description": "This is full description for Furniture Vase product",
     "price": 520,
     "quantity": 21
+  },
+  {
+    "category": "Modern",
+    "name": "Modern Chair",
+    "image": "products_images/slider1.jpg",
+    "short_desc": "This is a short description for Modern Chair product",
+    "description": "This is full description for Modern Chair product",
+    "price": 430,
+    "quantity": 11
+  },
+  {
+    "category": "Office",
+    "name": "Office lamp",
+    "image": "products_images/product-2-sm.jpg",
+    "short_desc": "This is a short description for Office lamp product",
+    "description": "This is full description for Office lamp product",
+    "price": 60,
+    "quantity": 58
+  },
+  {
+    "category": "Classic",
+    "name": "Classic sofa",
+    "image": "products_images/product-3-sm.jpg",
+    "short_desc": "This is a short description for Classic sofa product",
+    "description": "This is full description for Classic sofa product",
+    "price": 830,
+    "quantity": 5
+  },
+  {
+    "category": "Classic",
+    "name": "Classic clock",
+    "image": "products_images/product-4-sm.jpg",
+    "short_desc": "This is a short description for Classic clock product",
+    "description": "This is full description for Classic clock product",
+    "price": 70,
+    "quantity": 34
+  },
+  {
+    "category": "Furniture",
+    "name": "Furniture lamp",
+    "image": "products_images/product-5-sm.jpg",
+    "short_desc": "This is a short description for Furniture lamp product",
+    "description": "This is full description for Furniture lamp product",
+    "price": 120,
+    "quantity": 46
   }
 ]

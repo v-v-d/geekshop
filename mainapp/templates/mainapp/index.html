@@ -30,15 +30,17 @@
             <a href="#" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </article>
         <section class="featured-product-box">
+
             {% for product in products %}
                 <article class="featured-product-in-box" style="background-image: url('/media/{{ product.image }}')">
                     <div class="product-in-box-content">
-                        <a class="product-in-box-link" href="#"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <a class="product-in-box-link" href="{% url 'product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                         <h3 class="product-in-box-name">{{ product.name }}</h3>
                         <p class="product-in-box-details">{{ product.short_desc }}</p>
                     </div>
                 </article>
             {% endfor %}
+
         </section>
     </section>
     <section class="promo-product">
