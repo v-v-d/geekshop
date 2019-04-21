@@ -13,13 +13,22 @@
     <li><a href="{% url 'contacts' %}"
            class="menu-link {% if request.resolver_match.url_name == 'contacts' %}menu-link-active{% endif %}">CONTACT</a></li>
     <li><a href="#" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a></li>
-    <a href = "{% url 'basket:view' %}" class = "menu-basket"><img src="{% static 'img/bag.svg' %}" alt="basket"></a>
+    <li>
+        <div class = "menu-basket">
+            <a class = "menu-basket-link" href = "{% url 'basket:view' %}">
+                <img src="{% static 'img/bag.svg' %}" alt="basket">
+                {% if user.is_authenticated %}
+                    <h4 class="menu-basket-counter">{% if basket %}
+                        qty:&nbsp;{{ products_total_quantity|floatformat:0 }}&nbsp;pcs
+                        <br>
+                        price:&nbsp;{{ products_total_price }}$
+                        {% endif %}
+                    </h4>
+                {% endif %}
+            </a>
+        </div>
+    </li>
     {% if user.is_authenticated %}
-        <span class="menu-basket-counter">{% if basket %}
-            qty:&nbsp;{{ products_total_quantity|floatformat:0 }}&nbsp;pcs
-            <br>
-            price:&nbsp;{{ products_total_price }}$
-        {% endif %}</span>
         <span class="menu-auth">
             <a class="menu-auth-link" href = "{% url 'auth:edit' %}">
                 {% if user.username|length <= 7 %}
@@ -31,6 +40,9 @@
             <br>
             <a class="menu-auth-link" href = "{% url 'auth:logout' %}">logout</a>
         </span>
+        {% if user.is_superuser %}
+            <a class="menu-auth menu-auth-link" href = "{% url 'admin_custom:users' %}">админка</a>
+        {% endif %}
     {% else %}
         <span class="menu-auth">
             <a class="menu-auth-link" href = "{% url 'auth:login' %}">login</a>

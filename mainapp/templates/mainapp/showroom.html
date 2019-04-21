@@ -71,3 +71,77 @@
     </section>
 </main>
 {% endblock %}
+=======
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block container %}
+<header class="header padding-site">
+    {% include 'mainapp/includes/inc_header.html' %}
+</header>
+<main class="main">
+    {% include 'mainapp/includes/inc_products_nav.html' %}
+    <section class="product-page padding-site">
+        <article class="product-slider">
+            <a href="/media/{{ hot_product.image }}" target="_blank">
+                <div class="product-img" style="background-image: url(/media/{{ hot_product.image }})"></div>
+            </a>
+            <div class="product-mini-img-box">
+                <a href="/media/{{ hot_product.image }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ hot_product.image }})"></div>
+                </a>
+                <a href="/media/{{ hot_product.image }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ hot_product.image }})"></div>
+                </a>
+                <a href="/media/{{ hot_product.image }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ hot_product.image }})"></div>
+                </a>
+            </div>
+        </article>
+        <article class="product-description">
+            <h2 class="product-name">{{ hot_product.name }}</h2>
+            <h3 class="product-second-name">Hot Deal</h3>
+            <div class="product-price">
+                <p class="price-currency">$ </p>
+                <p class="price-num">{{ hot_product.price }}</p>
+                <p class="price-value">/sq</p>
+            </div>
+            <a href="{% url 'basket:add' hot_product.pk %}" class="product-button">
+                order&nbsp;us <img class="product-button-arrow" src="{% static 'img/arrow-product.svg' %}" alt="arrow">
+            </a>
+            <div class="product-details">
+                <p class="paragraph">{{ hot_product.description }}</p>
+                <!--
+                <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do&nbsp;eiusmod tempor incididunt ut&nbsp;labore</p>
+                <p class="paragraph"> et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad&nbsp;minim veniam, quis nostrud exercitation ullamco laboris nisi ut&nbsp;aliquip ex&nbsp;ea&nbsp;commodo consequat.</p>
+                <p class="paragraph">Duis aute irure dolor in&nbsp;reprehenderit in&nbsp;voluptate velit esse cillum dolore eu&nbsp;fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+
+    <p class="paragraph"> sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque </p>
+    <p class="paragraph">laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae </p>
+    <p class="paragraph">vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam </p>
+    <p class="paragraph">est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+-->
+            </div>
+        </article>
+    </section>
+    <section class="related-products padding-site">
+        <section class="related-products-menu">
+            <p class="related-products-text">Related Products</p>
+            <a href="#" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+        </section>
+        <section class="related-products-content">
+            {% for product in same_products %}
+                <article class="related-product" style="background-image: url(/media/{{ product.image }})">
+                    <div class="product-in-box-content">
+                        <a class="product-in-box-link" href="{% url 'product-details' product.pk %}">
+                            <img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow">
+                        </a>
+                        <h3 class="product-in-box-name">{{ product.name }}</h3>
+                        <p class="product-in-box-details">{{ product.description }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    </section>
+</main>
+{% endblock %}

@@ -2,17 +2,22 @@
 {% load staticfiles %}
 
 {% block container %}
-    <div class = "h2 text-center head">
-            This is your shopping cart,
-            {% if user.username|length <= 7 %}
-                {{ user.username }}
-            {% else %}
-                User
-            {% endif %}
-    </div>
-    <div class = "basket_list">
-        {% include 'basketapp/includes/inc_basket_list.html' %}
-    </div>
+        <section class="padding-site">
+                <header class="header">
+                    {% include 'mainapp/includes/inc_header.html' %}
+                </header>
+            <div class = "h2 text-center head">
+                    This is your shopping cart,
+                    {% if user.username|length <= 7 %}
+                        {{ user.username }}
+                    {% else %}
+                        User
+                    {% endif %}
+            </div>
+            <div class = "basket_list">
+                {% include 'basketapp/includes/inc_basket_list.html' %}
+            </div>
 
-    <a class = "btn btn-round" href = "{% url 'main' %}" >to main page</a>
+            <a class = "btn btn-round" href = "{% url 'main' %}" >to main page</a>
+        </section>
 {% endblock %}

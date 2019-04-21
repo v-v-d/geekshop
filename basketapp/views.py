@@ -7,12 +7,28 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 
 
+def get_user_basket(user):
+    return Basket.objects.filter(user=user) if user.is_authenticated else []
+
+
+def get_common_context(request):
+    common_context = {}
+    if get_user_basket(request.user):
+        common_context = {
+            'basket': get_user_basket(request.user),
+            'products_total_quantity': get_user_basket(request.user)[0].get_products_total_quantity_by_user,
+            'products_total_price': get_user_basket(request.user)[0].get_products_total_price_by_user,
+        }
+    return common_context
+
+
 @login_required
 def basket(request):
     title = 'корзина'
     context = {
         'title': title,
         'basket_items': Basket.objects.filter(user=request.user).order_by('product__category'),
+        **get_common_context(request),
     }
     return render(request, 'basketapp/basket.html', context)
 
