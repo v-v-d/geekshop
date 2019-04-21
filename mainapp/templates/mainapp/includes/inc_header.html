@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 
 <a class="logo" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
 <ul class="menu">
@@ -18,11 +19,15 @@
             <a class = "menu-basket-link" href = "{% url 'basket:view' %}">
                 <img src="{% static 'img/bag.svg' %}" alt="basket">
                 {% if user.is_authenticated %}
-                    <h4 class="menu-basket-counter">{% if basket %}
-                        qty:&nbsp;{{ products_total_quantity|floatformat:0 }}&nbsp;pcs
+                    <h4 class="menu-basket-counter">
+                        qty:&nbsp;{{ request.user|get_products_total_quantity_by_user }}&nbsp;pcs
                         <br>
-                        price:&nbsp;{{ products_total_price }}$
-                        {% endif %}
+                        price:&nbsp;{{ request.user|get_products_total_price_by_user }}$
+{#                        {% if basket %}#}
+{#                            qty:&nbsp;{{ products_total_quantity|floatformat:0 }}&nbsp;pcs#}
+{#                            <br>#}
+{#                            price:&nbsp;{{ products_total_price }}$#}
+{#                        {% endif %}#}
                     </h4>
                 {% endif %}
             </a>
@@ -48,6 +53,8 @@
             <a class="menu-auth-link" href = "{% url 'auth:login' %}">login</a>
             <br>
             <a class="menu-auth-link" href = "{% url 'auth:register' %}">register</a>
+            <br>
+            <a class="menu-auth-link" href="{% url 'social:begin' 'vk-oauth2' %}">login via VK</a>
         </span>
     {% endif %}
 </ul>

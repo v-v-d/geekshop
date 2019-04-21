@@ -20,21 +20,22 @@
 </head>
 
 <body>
-
-    <div class = "admin_container">
-        <div class = "h2 text-center head">
-            Админка
-        </div>
-        {% block menu %}
-            <div class = "admin_menu">
-                {% include 'adminapp/includes/inc_menu.html' %}
+    <div class="admin-wrapper">
+        <div class = "admin-container">
+            <div class="admin-header">
+                <div class = "admin-text-center">
+                    админка
+                </div>
+                {% block menu %}
+                    <div class = "admin-menu">
+                        {% include 'adminapp/includes/inc_menu.html' %}
+                    </div>
+                {% endblock %}
             </div>
-        {% endblock %}
-
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
-
 </body>
 
 </html>

@@ -7,5 +7,5 @@
         {{ form.as_p }}
         <input class="form-control" type="submit" value="сохранить">
     </form>
-    <a class="btn btn-round form-control last" href="{% url 'admin_custom:products' %}">к списку продуктов</a>
+    <a class="btn btn-round form-control last" href="{% url 'admin_custom:products' category_pk %}">к списку продуктов</a>
 {% endblock %}

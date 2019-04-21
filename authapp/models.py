@@ -8,4 +8,4 @@ class ShopUser(AbstractUser):
         verbose_name_plural = 'Users'
 
     avatar = models.ImageField(upload_to='users_avatars', blank=True)
-    age = models.PositiveIntegerField(verbose_name='age')
+    age = models.PositiveIntegerField(verbose_name='age', null=True)

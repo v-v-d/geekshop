@@ -10,3 +10,26 @@ window.onload = function () {
         event.preventDefault();
     });
 }
+
+// $("basket_list").on( "click",".basket-input-button",function () {
+//     var input_object = $(event.target).closest(
+//         'div'
+//     ).find(
+//         '.basket-input-field'
+//     );
+//
+//     var quantity = parseInt(input_object.attr('value'));
+//     var cart_id = input_object.attr('name');
+//
+//     ($(this).val() == "+") ? quantity++ : quantity--;
+//     $.ajax(
+//         "/basket/edit/" + cart_id + "/" + quantity + "/",
+//         {
+//             success: function (data) {
+//                 $("basket_list").html(data.result);
+//             }
+//         }
+//     );
+//     input_object.val(quantity);
+// });
+

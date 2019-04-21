@@ -1,19 +1,19 @@
-<ul class="menu">
-    <li>
-        <a href="{% url 'main' %}">
+<ul class="admin-menu-ul">
+    <li class="admin-menu-list">
+        <a class="admin-menu-link" href="{% url 'main' %}">
             на сайт
         </a>
     </li>
-    <li>
-        <a href="{% url 'admin_custom:users' %}"
+    <li class="admin-menu-list">
+        <a class="admin-menu-link" href="{% url 'admin_custom:users' %}"
             class="{% if request.resolver_match.url_name == 'users' %}
                 active
                 {% endif %}">
             пользователи
         </a>
     </li>
-    <li>
-        <a href="{% url 'admin_custom:categories' %}"
+    <li class="admin-menu-list">
+        <a class="admin-menu-link" href="{% url 'admin_custom:categories' %}"
             class="{% if request.resolver_match.url_name == 'categories' or category.name %}
                 active
                 {% endif %}">
