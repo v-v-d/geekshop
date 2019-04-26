@@ -53,7 +53,7 @@
     <section class="related-products padding-site">
         <section class="related-products-menu">
             <p class="related-products-text">Related Products</p>
-            <a href="#" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+            <a href="{% url 'products:index' %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </section>
         <section class="related-products-content">
             {% for product in same_products %}

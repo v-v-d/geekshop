@@ -33,7 +33,11 @@
 {#            </div>#}
 {#            <div class="basket-input">#}
 {#                <button class="basket-input-button" type="submit" value="-">-</button>#}
-{#                <input class="basket-input-field" type="number" maxlength="2" name="{{ item.pk }}" value="{{ item.quantity }}">#}
+{#                <div class="text-center mr-1 cart-input-quantity" type="number"#}
+{#                      name="{{ item.pk }}" value="{{ item.quantity }}">#}
+{#                    {{ item.quantity }}#}
+{#                </div>#}
+{#                <div class="basket-input-field" type="number" maxlength="2" name="{{ item.pk }}" value="{{ item.quantity }}">{{ item.quantity }}</div>#}
 {#                <button class="basket-input-button" type="submit" value="+">+</button>#}
 {#            </div>#}
             <a class="basket-trash-link" href="{% url 'basket:remove' item.pk %}">
@@ -42,3 +46,26 @@
         </div>
     </div>
 {% endfor %}
+
+<div class="basket-footer">
+    <div class="basket-totals">
+        <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ basket_items.0.get_products_total_quantity_by_user }}&nbsp;pcs</h4>
+        <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ basket_items.0.get_products_total_price_by_user }}</h4>
+    </div>
+    <a class="basket-checkout-link" href="#">
+        <div class="basket-checkout-button">Checkout</div>
+    </a>
+</div>
+
+{# С помощью шаблонных фильтров #}
+{#<div class="basket-footer">#}
+{#    <div class="basket-totals">#}
+{#        <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ request.user|get_products_total_quantity_by_user }}&nbsp;pcs</h4>#}
+{#        <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ request.user|get_products_total_price_by_user }}</h4>#}
+{#    </div>#}
+{#    <a class="basket-checkout-link" href="#">#}
+{#        <div class="basket-checkout-button">Checkout</div>#}
+{#    </a>#}
+{#</div>#}
+
+

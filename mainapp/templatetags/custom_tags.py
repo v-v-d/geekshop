@@ -9,8 +9,7 @@ def get_products_total_price_by_user(user):
         return 0
     else:
         items = user.basket.select_related('product').all()
-        # return sum(list(map(lambda x: x.product.price*x.quantity, items)))
-        return sum([items[i].product.price*items[i].quantity for i in range(len(items))])
+        return sum([item.product.price*item.quantity for item in items])
 
 
 @register.filter
@@ -19,5 +18,4 @@ def get_products_total_quantity_by_user(user):
         return 0
     else:
         items = user.basket.select_related('product').all()
-        # return sum(list(map(lambda x: x.product.price*x.quantity, items)))
-        return sum([items[i].quantity for i in range(len(items))])
+        return sum([item.quantity for item in items])

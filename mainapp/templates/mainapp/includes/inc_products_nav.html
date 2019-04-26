@@ -2,8 +2,9 @@
 
     <ul class="products-nav">
         <li class="products-nav-list">
-            <a class="products-nav-link{% if request.resolver_match.kwargs.pk == '0' %}-active{% endif %}"
-            href="{% url 'products:category' 0 %}">All</a>
+            <a class="products-nav-link{% if category.name == 'ALL' %}-active{% endif %}"
+            href="{% url 'products:index' %}">All</a>
+{#            href="{% url 'products:category' 0 %}">All</a>#}
         </li>
 
         {% for link in links_menu %}
@@ -17,11 +18,10 @@
     </ul>
 
 {% else %}
-
     <ul class="product-page-nav">
         <li class="product-page-nav-list">
             <a class="product-page-nav-link{% if request.resolver_match.kwargs.pk == '0' %}-active{% endif %}"
-            href="{% url 'products:category' 0 %}">All</a>
+            href="{% url 'products:index' %}">All</a>
         </li>
 
         {% for link in links_menu %}

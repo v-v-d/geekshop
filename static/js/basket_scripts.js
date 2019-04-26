@@ -1,15 +1,15 @@
-window.onload = function () {
-    $('.basket_list').on('click', 'input[type="number"]', function () {
-        var t_href = event.target;
-        $.ajax({
-            url: "/basket/edit/" + t_href.name + "/" + t_href.value + "/",
-            // success: function (data) {
-            //     $('.basket_list').html(data.result);
-            // },
-        });
-        event.preventDefault();
-    });
-}
+// window.onload = function () {
+//     $('.basket_list').on('click', 'input[type="number"]', function () {
+//         var t_href = event.target;
+//         $.ajax({
+//             url: "/basket/edit/" + t_href.name + "/" + t_href.value + "/",
+//             success: function (data) {
+//                 $('.basket_list').html(data.result);
+//             },
+//         });
+//         event.preventDefault();
+//     });
+// }
 
 // $("basket_list").on( "click",".basket-input-button",function () {
 //     var input_object = $(event.target).closest(
@@ -32,4 +32,20 @@ window.onload = function () {
 //     );
 //     input_object.val(quantity);
 // });
+//
 
+window.onload = function () {
+    $('.basket_list').change( 'input[type="number"]',function (event) {
+
+        let targetHref = event.target;
+
+        $.ajax({
+            url: "/basket/edit/" + targetHref.name + "/" + targetHref.value + "/",
+            success: function (data) {
+                $('.basket_list').html(data.result);
+            }
+        });
+
+        event.preventDefault();
+    });
+};

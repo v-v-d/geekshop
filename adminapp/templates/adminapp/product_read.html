@@ -2,27 +2,31 @@
 {% load static %}
 
 {% block content %}
-    <div class="product_read">
-        <div class="product_name">
-            Продукт <strong>{{ object.name|title }} ({{ object.category.name|title }})</strong>
+    <div class="product-read">
+        <div class="admin-new-item">
+            <h4 class="admin-item-name">{{ object.name|title }} ({{ object.category.name|title }})</b></h4>
+            <a class="admin-new-item-button" href= {% url 'admin_custom:products' object.category.pk %}>Назад</a>
         </div>
-        <img src="/media/{{ object.image|default:'products_images/default.jpg' }}"
-             alt="{{ object.name }}">
-        <div class="summary">
-            <b>цена</b>
-            <p>{{ object.price }}$</p>
-            <b>количество</b>
-            <p>{{ object.quantity }}</p>
-            <b>в каталоге</b>
-            <p>{% if object.is_active %}да{% else %}нет{% endif %}</p>
-            <p><a href= {% url 'admin_custom:product_update' object.pk %}>редактировать</a></p>
-            <p><a href= {% url 'admin_custom:product_delete' object.pk %}>удалить</a></p>
-            <p><a href= {% url 'admin_custom:products' object.category.pk %}>назад</a></p>
+        <div class="product-read-name">
+            <strong>{{ object.name|title }} ({{ object.category.name|title }})</strong>
         </div>
-        <div class="product_desc">
-            <b>краткая информация</b>
+        <div class="product-read-properties">
+            <div class="product-read-img" style="background-image: url('/media/{{ object.image|default:'products_images/default.jpg' }}')"></div>
+            <div class="product-read-properties-actions">
+                <div class="product-read-summary">
+                    <p><b>цена:&nbsp;</b>{{ object.price }}$</p>
+                    <p><b>количество:&nbsp;</b>{{ object.quantity }}</p>
+                    <p><b>в каталоге:&nbsp;</b>{% if object.is_active %}да{% else %}нет{% endif %}</p>
+                </div>
+                <div class="admin-object-actions">
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_update' object.pk %}>Редактировать</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_delete' object.pk %}>Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="product-read-desc">
+            <b>Краткая информация</b>
             <p>{{ object.short_desc }}</p>
-            <br><br>
             <b>подробная информация</b>
             <p>{{ object.description }}</p>
         </div>

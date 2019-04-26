@@ -35,13 +35,7 @@
     </li>
     {% if user.is_authenticated %}
         <span class="menu-auth">
-            <a class="menu-auth-link" href = "{% url 'auth:edit' %}">
-                {% if user.username|length <= 7 %}
-                    {{ user.username|default:'User' }}&nbsp;(edit)
-                {% else %}
-                    User&nbsp;(edit)
-                {% endif %}
-            </a>
+            <a class="menu-auth-link" href = "{% url 'auth:edit' %}">{{ user.username|truncatechars_html:5 }}&nbsp;(edit)</a>
             <br>
             <a class="menu-auth-link" href = "{% url 'auth:logout' %}">logout</a>
         </span>

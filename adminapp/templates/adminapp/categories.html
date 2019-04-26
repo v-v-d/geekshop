@@ -13,7 +13,7 @@
                  {% if not object.is_active %}
                     not_active
                 {% endif %}">
-                <div class="admin-object-name admin-object-name-categories">{{ object.name|title }}</div>
+                <div class="admin-object-name admin-object-name-categories"><b>{{ object.name|title }}</b></div>
                 <div class="admin-object-desc admin-object-desc-categories">{{ object.description|title }}</div>
                 <div class="admin-object-actions admin-object-actions-categories">
                     <a class="admin-object-actions-link" href= {% url 'admin_custom:products' object.pk %}>товары категории</a>

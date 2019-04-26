@@ -159,6 +159,7 @@ SOCIAL_AUTH_VK_OAUTH2_SCOPE = [
     'notify',
     'friends',
     'email',
+    'photos',
 ]
 
 SOCIAL_AUTH_PIPELINE = (
