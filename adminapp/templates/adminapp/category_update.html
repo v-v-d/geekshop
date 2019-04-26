@@ -2,10 +2,20 @@
 {% load static %}
 
 {% block content %}
+    <div class="admin-new-item">
+        <h4 class="admin-item-name">
+            {% if request.resolver_match.url_name == 'category_create' %}
+                Создание категории
+            {% else %}
+                Редактирование категории
+            {% endif %}
+        </h4>
+        <a class="admin-new-item-button" href={% url 'admin_custom:categories' %}>К списку категорий</a>
+    </div>
+
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input class="form-control" type="submit" value="сохранить">
     </form>
-    <a class="btn btn-round form-control last" href="{% url 'admin_custom:categories' %}">к списку категорий</a>
 {% endblock %}

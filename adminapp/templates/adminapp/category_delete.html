@@ -2,12 +2,14 @@
 {% load static %}
 
 {% block content %}
-    <div class="category_delete">
+    <div class="admin-object-record admin-object-record-delete">
         Уверены, что хотите удалить {{ productcategory.name }}?
-        <form action="{% url 'admin_custom:category_delete' productcategory.pk %}" method="post">
-            {% csrf_token %}
-            <input class="btn btn-danger" type="submit" value="удалить">
-        </form>
-        <a class="btn btn-success" href="{% url 'admin_custom:categories' %}">Отмена</a>
+        <div class="admin-object-actions admin-object-actions-delete">
+            <form action="{% url 'admin_custom:category_delete' productcategory.pk %}" method="post">
+                {% csrf_token %}
+                <input class="admin-object-actions-link admin-object-actions-link-delete" type="submit" value="удалить">
+            </form>
+            <a class="admin-object-actions-link admin-object-actions-link-delete" href="{% url 'admin_custom:categories' %}">Отмена</a>
+        </div>
     </div>
 {% endblock %}

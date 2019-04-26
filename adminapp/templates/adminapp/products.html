@@ -3,28 +3,35 @@
 
 {% block content %}
     <div class="products_list">
-        <a class="new_product" href= {% url 'admin_custom:product_create' category.pk %}>Создать новый продукт</a>
+        <div class="admin-new-item">
+            <h4 class="admin-item-name">Категория:&nbsp;<b>{{ category_name }}</b></h4>
+            <a class="admin-new-item-button" href= {% url 'admin_custom:product_create' category_pk %}>Создать новый продукт</a>
+        </div>
 
         {% for object in object_list %}
-            <div class="product_record">
-                <img src="/media/{{ object.image|default:'products_images/default.jpg' }}" alt="{{ object.name }}">
-                <div class="product_name">
-                    {{ object.name|title }}
+            <div class="admin-object-record
+                {% if not object.is_active %}
+                    not_active
+                {% endif %}">
+                <div class="admin-object-img" style="background-image: url('/media/{{ object.image|default:'products_images/default.jpg' }}')"></div>
+                <div class="admin-text-about">
+                    <h4 class="admin-object-name">
+                        {{ object.name|title }}
+                    </h4>
+                    <h4 class="admin-object-desc">
+                        {{ object.short_desc|title }}
+                    </h4>
                 </div>
-                <div class="product_actions">
-                    <a href= {% url 'admin_custom:product_read' object.pk %}>подробнее</a>
-                    <a href= {% url 'admin_custom:product_update' object.pk %}>редактировать</a>
-                    <a href= {% url 'admin_custom:product_delete' object.pk %}>удалить</a>
+                <div class="admin-summary">
+                    <h4 class="admin-summary-text"><b>цена</b>&nbsp;{{ object.price }}$</h4>
+                    <h4 class="admin-summary-text"><b>количество</b>&nbsp;{{ object.quantity }}</h4>
                 </div>
-                <div class="summary">
-                    <b>цена</b>
-                    <p>{{ object.price }}$</p>
-                    <b>количество</b>
-                    <p>{{ object.quantity }}</p>
+                <div class="admin-object-actions">
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_read' object.pk %}>подробнее</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_update' object.pk %}>редактировать</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_delete' object.pk %}>удалить</a>
                 </div>
-                <div class="product_desc">
-                    {{ object.short_desc|title }}
-                </div>
+
             </div>
         {% endfor %}
 

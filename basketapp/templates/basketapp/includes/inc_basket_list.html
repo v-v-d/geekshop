@@ -1,18 +1,71 @@
+{% load static %}
+{% load custom_tags %}
+
 {% for item in basket_items %}
-    <div class = "basket_record">
-        <img src = "/media/{{ item.product.image }}" alt = "{{ item.product.short_desc }}">
-        <span class = "category_name">{{ item.product.category.name }}</span>
-        <span class = "product_name">{{ item.product.name }}</span>
-        <span class = "product_price">{{ item.product.price }}$</span>
-        <input type = "number" name = "{{ item.pk }}" min = "0" value = "{{ item.quantity }}">
-        <span class = "product_cost">{{ item.cost }}$</span>
-        <a href = "{% url 'basket:remove' item.pk %}" class = "btn btn-round">remove</a>
+    <div class="basket-row">
+        <a class="basket-product-img-link" href="{% url 'product-details' item.product.pk %}" target="_blank">
+            <img class="basket-product-img" src="/media/{{ item.product.image }}">
+        </a>
+        <div class="basket-product-about">
+            <h4 class="basket-product-name">
+                {{ item.product.name }}&nbsp;({{ item.product.category.name }})
+            </h4>
+            <h4 class="basket-product-description">
+                {{ item.product.short_desc }}
+            </h4>
+        </div>
+        <div class="basket-product-control">
+            <div class="basket-product-price">
+                <h6>${{ item.product.price }}</h6>
+                <h6 class="basket-text-muted">&nbsp;x</h6>
+            </div>
+            <div class="basket-input">
+                <input class="basket-input-field" type = "number" name = "{{ item.pk }}" min = "0" value = "{{ item.quantity }}">
+            </div>
+{#            <div class="basket-input">#}
+{#                <a class="basket-input-dec-button" href="#">#}
+{#                    <div class="basket-input-button">-</div>#}
+{#                </a>#}
+{#                <input class="basket-input-field" type="text" maxlength="2" name="{{ item.pk }}" value="{{ item.quantity }}" >#}
+{#                <a class="basket-input-inc-button" href="#">#}
+{#                    <div class="basket-input-button">+</div>#}
+{#                </a>#}
+{#            </div>#}
+{#            <div class="basket-input">#}
+{#                <button class="basket-input-button" type="submit" value="-">-</button>#}
+{#                <div class="text-center mr-1 cart-input-quantity" type="number"#}
+{#                      name="{{ item.pk }}" value="{{ item.quantity }}">#}
+{#                    {{ item.quantity }}#}
+{#                </div>#}
+{#                <div class="basket-input-field" type="number" maxlength="2" name="{{ item.pk }}" value="{{ item.quantity }}">{{ item.quantity }}</div>#}
+{#                <button class="basket-input-button" type="submit" value="+">+</button>#}
+{#            </div>#}
+            <a class="basket-trash-link" href="{% url 'basket:remove' item.pk %}">
+                <img class="basket-trash-img" src="{% static 'img/trash_basket.svg' %}" alt="trash_basket">
+            </a>
+        </div>
     </div>
 {% endfor %}
 
-{% if basket_items %}
-    <div class = "basket_summary">
-        You have {{ basket_items.0.get_products_total_quantity_by_user }}&nbsp;items in&nbsp;the basket
-        for a&nbsp;total price {{ basket_items.0.get_products_total_price_by_user }}$
+<div class="basket-footer">
+    <div class="basket-totals">
+        <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ basket_items.0.get_products_total_quantity_by_user }}&nbsp;pcs</h4>
+        <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ basket_items.0.get_products_total_price_by_user }}</h4>
     </div>
-{% endif %}
+    <a class="basket-checkout-link" href="#">
+        <div class="basket-checkout-button">Checkout</div>
+    </a>
+</div>
+
+{# С помощью шаблонных фильтров #}
+{#<div class="basket-footer">#}
+{#    <div class="basket-totals">#}
+{#        <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ request.user|get_products_total_quantity_by_user }}&nbsp;pcs</h4>#}
+{#        <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ request.user|get_products_total_price_by_user }}</h4>#}
+{#    </div>#}
+{#    <a class="basket-checkout-link" href="#">#}
+{#        <div class="basket-checkout-button">Checkout</div>#}
+{#    </a>#}
+{#</div>#}
+
+

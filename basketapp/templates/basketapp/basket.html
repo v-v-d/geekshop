@@ -1,23 +1,36 @@
 {% extends 'mainapp/base.html' %}
-{% load staticfiles %}
+{% load static %}
+{% load custom_tags %}
 
 {% block container %}
-        <section class="padding-site">
-                <header class="header">
-                    {% include 'mainapp/includes/inc_header.html' %}
-                </header>
-            <div class = "h2 text-center head">
-                    This is your shopping cart,
-                    {% if user.username|length <= 7 %}
-                        {{ user.username }}
-                    {% else %}
-                        User
-                    {% endif %}
-            </div>
-            <div class = "basket_list">
-                {% include 'basketapp/includes/inc_basket_list.html' %}
-            </div>
+    <section class="padding-site">
+        <header class="header">
+            {% include 'mainapp/includes/inc_header.html' %}
+        </header>
+        <div class="basket">
+            <div class="basket-body">
+                <div class="basket-header">
+                    <div class="basket-body-name">
+                        <img class="basket-bag" src="{% static 'img/bag.svg' %}" alt="bag">
+                        <h3 class="basket-body-name-h3"></h3>Shopping Cart&nbsp;
 
-            <a class = "btn btn-round" href = "{% url 'main' %}" >to main page</a>
-        </section>
+                        {% if request.user.first_name and request.user.first_name|length <= 15 %}
+                            ({{ request.user.first_name|title }})
+                        {% elif request.user.username|length <= 15 %}
+                            ({{ request.user.username }})
+                        {% else %}
+                            (user)
+                        {% endif %}
+
+                    </div>
+                    <a class="basket-back-to-link" href="{% url 'main' %}">
+                        <div class="basket-back-to-button">Continue&nbsp;shopping</div>
+                    </a>
+                </div>
+                <div class="basket_list">
+                    {% include 'basketapp/includes/inc_basket_list.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

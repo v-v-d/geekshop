@@ -1,0 +1,34 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="product-read">
+        <div class="admin-new-item">
+            <h4 class="admin-item-name">{{ object.name|title }} ({{ object.category.name|title }})</b></h4>
+            <a class="admin-new-item-button" href= {% url 'admin_custom:products' object.category.pk %}>Назад</a>
+        </div>
+        <div class="product-read-name">
+            <strong>{{ object.name|title }} ({{ object.category.name|title }})</strong>
+        </div>
+        <div class="product-read-properties">
+            <div class="product-read-img" style="background-image: url('/media/{{ object.image|default:'products_images/default.jpg' }}')"></div>
+            <div class="product-read-properties-actions">
+                <div class="product-read-summary">
+                    <p><b>цена:&nbsp;</b>{{ object.price }}$</p>
+                    <p><b>количество:&nbsp;</b>{{ object.quantity }}</p>
+                    <p><b>в каталоге:&nbsp;</b>{% if object.is_active %}да{% else %}нет{% endif %}</p>
+                </div>
+                <div class="admin-object-actions">
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_update' object.pk %}>Редактировать</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:product_delete' object.pk %}>Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="product-read-desc">
+            <b>Краткая информация</b>
+            <p>{{ object.short_desc }}</p>
+            <b>подробная информация</b>
+            <p>{{ object.description }}</p>
+        </div>
+    </div>
+{% endblock %}

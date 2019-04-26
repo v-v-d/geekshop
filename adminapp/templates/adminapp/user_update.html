@@ -1,11 +1,24 @@
-{% extends 'authapp/base.html' %}
+{% extends 'adminapp/base.html' %}
 {% load static %}
 
 {% block content %}
+
+{#    {% include 'authapp/base.html' %}#}
+    <div class="admin-new-item">
+        <h4 class="admin-item-name">
+            {% if request.resolver_match.url_name == 'user_create' %}
+                Создание пользователя
+            {% else %}
+                Редактирование пользователя
+            {% endif %}
+        </h4>
+        <a class="admin-new-item-button" href= {% url 'admin_custom:users' %}>Назад к списку пользователей</a>
+    </div>
+
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input class="form-control" type="submit" value="сохранить">
     </form>
-    <a class="btn btn-round form-control last" href="{% url 'admin_custom:users' %}">к списку пользователей</a>
+
 {% endblock %}

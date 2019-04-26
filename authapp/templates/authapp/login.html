@@ -3,6 +3,8 @@
 
 
 {% block content %}
+
+    <div class="auth-form-name">Login form</div>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         {% if next %}

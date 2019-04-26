@@ -3,20 +3,22 @@
 
 {% block content %}
     <div class="categories_list">
-        <a class="new_category" href={% url 'admin_custom:category_create' %}>Создать новую категорию</a>
+        <div class="admin-new-item">
+            <h4 class="admin-item-name">Категории</h4>
+            <a class="admin-new-item-button" href={% url 'admin_custom:category_create' %}>Создать новую категорию</a>
+        </div>
 
-{#        {% for object in objects %} {#для функции #}
-        {% for object in object_list %} {#для класса#}
-            <div class="category_record
+        {% for object in object_list %}
+            <div class="admin-object-record
                  {% if not object.is_active %}
                     not_active
                 {% endif %}">
-                <div class="category_name">{{ object.name|title }}</div>
-                <div class = "category_desc">{{ object.description|title }}</div>
-                <div class="category_actions">
-                    <a href= {% url 'admin_custom:products' object.pk %}>товары категории</a>
-                    <a href= {% url 'admin_custom:category_update' object.pk %}>редактировать</a>
-                    <a href= {% url 'admin_custom:category_delete' object.pk %}>удалить</a>
+                <div class="admin-object-name admin-object-name-categories"><b>{{ object.name|title }}</b></div>
+                <div class="admin-object-desc admin-object-desc-categories">{{ object.description|title }}</div>
+                <div class="admin-object-actions admin-object-actions-categories">
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:products' object.pk %}>товары категории</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:category_update' object.pk %}>редактировать</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:category_delete' object.pk %}>удалить</a>
                 </div>
             </div>
         {% endfor %}
