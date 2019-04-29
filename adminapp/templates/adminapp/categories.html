@@ -18,7 +18,9 @@
                 <div class="admin-object-actions admin-object-actions-categories">
                     <a class="admin-object-actions-link" href= {% url 'admin_custom:products' object.pk %}>товары категории</a>
                     <a class="admin-object-actions-link" href= {% url 'admin_custom:category_update' object.pk %}>редактировать</a>
-                    <a class="admin-object-actions-link" href= {% url 'admin_custom:category_delete' object.pk %}>удалить</a>
+                    {% if object.is_active == True %}
+                        <a class="admin-object-actions-link admin-object-actions-link-red" href= {% url 'admin_custom:category_delete' object.pk %}>удалить</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

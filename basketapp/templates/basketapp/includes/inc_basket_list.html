@@ -3,7 +3,7 @@
 
 {% for item in basket_items %}
     <div class="basket-row">
-        <a class="basket-product-img-link" href="{% url 'product-details' item.product.pk %}" target="_blank">
+        <a class="basket-product-img-link" href="{% url 'main:product-details' item.product.pk %}" target="_blank">
             <img class="basket-product-img" src="/media/{{ item.product.image }}">
         </a>
         <div class="basket-product-about">
@@ -47,17 +47,22 @@
     </div>
 {% endfor %}
 
-<div class="basket-footer">
-    <div class="basket-totals">
-        <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ basket_items.0.get_products_total_quantity_by_user }}&nbsp;pcs</h4>
-        <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ basket_items.0.get_products_total_price_by_user }}</h4>
+{% if basket_items|length == 0 %}
+    <div class="basket-product-name basket-row">You have no items in your shopping cart yet</div>
+{% else %}
+    <div class="basket-footer">
+        <div class="basket-totals">
+            <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ basket_items.0.get_products_total_quantity_by_user }}&nbsp;pcs</h4>
+            <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ basket_items.0.get_products_total_price_by_user }}</h4>
+        </div>
+        <a class="basket-checkout-link" href="#">
+            <div class="basket-checkout-button">Checkout</div>
+        </a>
     </div>
-    <a class="basket-checkout-link" href="#">
-        <div class="basket-checkout-button">Checkout</div>
-    </a>
-</div>
+{% endif %}
 
-{# С помощью шаблонных фильтров #}
+
+{# С помощью шаблонных фильтров. не работает с аяксом #}
 {#<div class="basket-footer">#}
 {#    <div class="basket-totals">#}
 {#        <h4 class="basket-totals-text"><b>Total&nbsp;qty:&nbsp;</b>{{ request.user|get_products_total_quantity_by_user }}&nbsp;pcs</h4>#}

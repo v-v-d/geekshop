@@ -8,13 +8,13 @@
     </header>
 
         {% for product in products|dictsortreversed:"pk"|slice:":1" %}
-            <section class="slider padding-site" style="background-image: url('/media/{{ product.image }}')">
+            <section class="slider padding-site" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                 <div></div>
                 <div class="slider-text">
                     <h4 class="slider-h4">TRENDING</h4>
                     <h2 class="slider-h2">{{ product.name }}</h2>
                     <p class="slider-p">{{ product.short_desc }}</p>
-                    <a href="{% url 'product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                    <a href="{% url 'main:product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                 </div>
         {% endfor %}
 
@@ -30,14 +30,14 @@
                 <li><a href="#" class="featured-new-link-active">Featured</a></li>
                 <li><a href="#" class="featured-new-link">New</a></li>
             </ul>
-            <a href="{% url 'products:index' %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+            <a href="{% url 'main:products' %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </article>
         <section class="featured-product-box">
 
             {% for product in products|slice:":4" %}
-                <article class="featured-product-in-box" style="background-image: url('/media/{{ product.image }}')">
+                <article class="featured-product-in-box" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                     <div class="product-in-box-content">
-                        <a class="product-in-box-link" href="{% url 'product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                         <h3 class="product-in-box-name">{{ product.name }}</h3>
                         <p class="product-in-box-details">{{ product.short_desc }}</p>
                     </div>
@@ -49,12 +49,12 @@
     <section class="promo-product">
 
         {% for product in products|slice:"16:18" %}
-            <article class="promo-product-content promo-product-img" style="background-image: url('/media/{{ product.image }}')">
+            <article class="promo-product-content promo-product-img" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                 <div class="promo-text">
                     <h4 class="promo-h4">exclusive</h4>
                     <h2 class="promo-h2">{{ product.name }}</h2>
                     <p class="promo-p">{{ product.short_desc }}</p>
-                    <a href="{% url 'product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                    <a href="{% url 'main:product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                 </div>
             </article>
         {% endfor %}
@@ -63,14 +63,14 @@
     <section class="trending-products padding-site">
         <section class="trending-products-menu">
             <p class="trending-products-text">Trending Products</p>
-            <a href="{% url 'products:index' %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+            <a href="{% url 'main:products' %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </section>
         <section class="trending-products-content">
 
             {% for product in products|dictsortreversed:"quantity"|slice:":6" %}
-                <article class="trending-product" style="background-image: url('/media/{{ product.image }}')">
+                <article class="trending-product" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                     <div class="product-in-box-content">
-                        <a class="product-in-box-link" href="{% url 'product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                         <h3 class="product-in-box-name">{{ product.name }}</h3>
                         <p class="product-in-box-details">{{ product.short_desc }}</p>
                     </div>
@@ -81,13 +81,13 @@
     </section>
 
     {% for product in products|dictsortreversed:"pk"|slice:"1:2" %}
-        <section class="hot-deals padding-site" style="background-image: url('/media/{{ product.image }}')">
+        <section class="hot-deals padding-site" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
             <div></div>
             <div class="hot-deals-text">
                 <h4 class="hot-deals-h4">TRENDING</h4>
                 <h2 class="hot-deals-h2">{{ product.name }}</h2>
                 <p class="hot-deals-p">{{ product.short_desc }}</p>
-                <a href="{% url 'product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                <a href="{% url 'main:product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
             </div>
     {% endfor %}
 
@@ -101,12 +101,12 @@
         <section class="exclusive-content">
 
             {% for product in products|dictsort:"quantity"|slice:":1" %}
-                <section class="exclusive-content-product" style="background-image: url('/media/{{ product.image }}')">
+                <section class="exclusive-content-product" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                     <div class="exclusive-content-product-text">
                         <h4 class="exclusive-content-product-tag">exclusive</h4>
                         <h2 class="exclusive-content-product-name">{{ product.name }}</h2>
                         <p class="exclusive-content-product-details">{{ product.short_desc }}</p>
-                        <a href="{% url 'product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <a href="{% url 'main:product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                     </div>
                 </section>
             {% endfor %}
@@ -114,9 +114,9 @@
             <section class="exclusive-content-product-box">
 
                 {% for product in products|slice:"5:15"|dictsort:"quantity"|slice:":4" %}
-                    <article class="exclusive-content-product-in-box" style="background-image: url('/media/{{ product.image }}')">
+                    <article class="exclusive-content-product-in-box" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                         <div class="product-in-box-content">
-                            <a class="product-in-box-link" href="{% url 'product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                            <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                             <h3 class="product-in-box-name">{{ product.name }}</h3>
                             <p class="product-in-box-details">{{ product.short_desc }}</p>
                         </div>

@@ -78,6 +78,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mainapp.context_processors.user_basket',
+                # 'mainapp.context_processors.products_total_quantity',
+                # 'mainapp.context_processors.products_total_price',
             ],
         },
     },
@@ -175,3 +178,14 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 LOGIN_REDIRECT_URL = '/'
+
+DOMAIN_NAME = config.get('smtp', 'DOMAIN_NAME')
+
+EMAIL_HOST = config.get('smtp', 'EMAIL_HOST')
+EMAIL_PORT = config.get('smtp', 'EMAIL_PORT')
+EMAIL_HOST_USER = config.get('smtp', 'EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = config.get('smtp', 'EMAIL_USE_SSL')
+
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'

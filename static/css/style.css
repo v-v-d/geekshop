@@ -1506,6 +1506,10 @@ body {
     margin: 0 10px;
 }
 
+.admin-menu-list-active {
+    border-bottom: 2px solid #555;
+}
+
 .admin-menu-link {
     text-decoration: none;
     color: #555;
@@ -1532,7 +1536,8 @@ body {
     border-bottom-right-radius: 10px;
 }
 
-.admin-object-img {
+.admin-object-img,
+.user_avatar {
     width: 150px;
     height: 150px;
     border-radius: 10px;
@@ -1576,7 +1581,6 @@ body {
 }
 
 .admin-new-item-button:active {
-    /*box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);*/
     position: relative;
     top: 1px;
     left: 1px;
@@ -1664,10 +1668,19 @@ body {
     margin: 0 10px;
 }
 
+.admin-object-actions-link-red {
+    background-color: #b94b42;
+}
+
+.admin-object-actions-link-red:hover {
+    background-color: #a1423a;
+    text-decoration: none;
+    color: #fff;
+}
+
 .form-horizontal {
     width: 75%;
-    margin-left: 12.5%;
-    margin-top: 30px;
+    margin: 30px 12.5% 0;
 }
 
 .product-read-name {
@@ -1701,6 +1714,77 @@ body {
 
 .product-read-desc {
     text-align: center;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 200px 200px;
+}
+
+.form-horizontal-edit {
+    margin: 0;
+}
+
+.form-control-back-to {
+    margin: 10px 0 30px;
+    text-align: center;
+}
+
+.form-control-back-to:hover {
+    text-decoration: none;
+    color: #555;
+}
+
+.paginator {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-size: 18px;
+}
+
+.pagination-arrow {
+    text-decoration: none;
+    font-weight: 600;
+    color: #555;
+    margin: 0 7px;
+}
+
+.verification-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 100px 25%;
+}
+
+.verification-message-button {
+    display: block;
+    height: 40px;
+    font-size: 22px;
+    font-variant: small-caps;
+    line-height: 38px;
+    background-color: #4a9b4e;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.verification-message-button:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #468c46;
+}
+
+
+.verification-message-button:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #3c793c;
 }
 
 input[type=number]::-webkit-inner-spin-button,

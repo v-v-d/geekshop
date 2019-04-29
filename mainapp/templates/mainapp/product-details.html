@@ -9,18 +9,18 @@
     {% include 'mainapp/includes/inc_products_nav.html' %}
     <section class="product-page padding-site">
         <article class="product-slider">
-            <a href="/media/{{ detailed_product.image }}" target="_blank">
-                <div class="product-img" style="background-image: url(/media/{{ detailed_product.image }})"></div>
+            <a href="/media/{{ detailed_product.image|default:'products_images/default.svg' }}" target="_blank">
+                <div class="product-img" style="background-image: url(/media/{{ detailed_product.image|default:'products_images/default.svg' }})"></div>
             </a>
             <div class="product-mini-img-box">
-                <a href="/media/{{ detailed_product.image }}" target="_blank">
-                    <div class="product-mini-img" style="background-image: url(/media/{{ detailed_product.image }})"></div>
+                <a href="/media/{{ detailed_product.image|default:'products_images/default.svg' }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ detailed_product.image|default:'products_images/default.svg' }})"></div>
                 </a>
-                <a href="/media/{{ detailed_product.image }}" target="_blank">
-                    <div class="product-mini-img" style="background-image: url(/media/{{ detailed_product.image }})"></div>
+                <a href="/media/{{ detailed_product.image|default:'products_images/default.svg' }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ detailed_product.image|default:'products_images/default.svg' }})"></div>
                 </a>
-                <a href="/media/{{ detailed_product.image }}" target="_blank">
-                    <div class="product-mini-img" style="background-image: url(/media/{{ detailed_product.image }})"></div>
+                <a href="/media/{{ detailed_product.image|default:'products_images/default.svg' }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ detailed_product.image|default:'products_images/default.svg' }})"></div>
                 </a>
             </div>
         </article>

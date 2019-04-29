@@ -4,16 +4,19 @@
 
 {% block content %}
 
-    <div class="auth-form-name">Login form</div>
-    <form class="form-horizontal" method="post">
-        {% csrf_token %}
-        {% if next %}
-            <input type = "hidden" name = "next" value = "{{ next }}">
-        {% endif %}
-        {{ login_form.as_p }}
-        <br>
-        <input class="form-control" type="submit" value="LOGIN">
-    </form>
+    <div class="form-wrapper">
+        <div class="auth-form-name">Login form</div>
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                {% if next %}
+                    <input type = "hidden" name = "next" value = "{{ next }}">
+                {% endif %}
+                {{ login_form.as_p }}
+                <br>
+                <input class="form-control" type="submit" value="LOGIN">
+            </form>
+    </div>
+
 
 {% endblock %}
 
