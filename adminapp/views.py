@@ -217,5 +217,3 @@ class ProductDeleteView(DeleteView):
         product.is_active = False
         product.save()
         return HttpResponseRedirect(self.get_success_url())
-
-

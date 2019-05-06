@@ -12,12 +12,36 @@
     <div class="products padding-site">
         {% include 'mainapp/includes/inc_products_nav.html' %}
 {#        <h2 class="product-list-title">Category: "{{ category.name|title }}"</h2>#}
+
+        <div class="paginator">
+
+            {% if paginated_products.has_previous %}
+                {% if category.pk %}
+                    <a class="pagination-arrow" href="{% url 'main:page' category.pk paginated_products.previous_page_number %}"><</a>
+                {% else %}
+                    <a class="pagination-arrow" href="{% url 'main:catalog' paginated_products.previous_page_number %}"><</a>
+                {% endif %}
+            {% endif %}
+                <span class="current">
+                    page {{ paginated_products.number }} of
+                    {{ paginated_products.paginator.num_pages }}
+                </span>
+            {% if paginated_products.has_next %}
+                {% if category.pk %}
+                    <a class="pagination-arrow" href="{% url 'main:page' category.pk paginated_products.next_page_number %}">></a>
+                {% else %}
+                    <a class="pagination-arrow" href="{% url 'main:catalog' paginated_products.next_page_number %}">></a>
+                {% endif %}
+            {% endif %}
+
+        </div>
+
         <section class="products-content">
 
-            {% for product in products_list %}
-                <article class="product" style="background-image: url('/media/{{ product.image }}')">
+            {% for product in paginated_products %}
+                <article class="product" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                 <div class="product-in-box-content">
-                    <a class="product-in-box-link" href="{% url 'product-details' product.pk %}">
+                    <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}">
                         <img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow">
                     </a>
                     <h3 class="product-in-box-name">{{ product.name }}</h3>
@@ -28,7 +52,7 @@
 
         </section>
 
-        {% if products_list|length > 12 %}
+        {% if paginated_products|length == 12 %}
             <section class="product-sync"><a href="#" class="product-sync-link"><i class="fas fa-sync-alt"></i></a></section>
         {% endif %}
 
@@ -36,29 +60,95 @@
 
     {% if category.name == 'ALL' %}
         <section class="promo-product">
-            <article class="promo-product-content">
-                <img class="promo-product-img" src="{% static 'img/promo-img1.jpg' %}" alt="promo-img1">
-                <div class="promo-text">
-                    <h4 class="promo-h4">exclusive</h4>
-                    <h2 class="promo-h2">Fishnet Chair</h2>
-                    <p class="promo-p">
-                        Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt
-                    </p>
-                    <a href="#" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                </div>
-            </article>
-            <article class="promo-product-content">
-                <img class="promo-product-img" src="{% static 'img/promo-img.jpg' %}" alt="promo-img1">
-                <div class="promo-text">
-                    <h4 class="promo-h4">exclusive</h4>
-                    <h2 class="promo-h2">Fishnet Chair</h2>
-                    <p class="promo-p">
-                        Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt
-                    </p>
-                    <a href="#" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                </div>
-            </article>
+            {% for product in products_list|slice:"14:16" %}
+                <article class="promo-product-content promo-product-img" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
+                    <div class="promo-text">
+                        <h4 class="promo-h4">exclusive</h4>
+                        <h2 class="promo-h2">{{ product.name }}</h2>
+                        <p class="promo-p">{{ product.short_desc }}</p>
+                        <a href="{% url 'main:product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                    </div>
+                </article>
+            {% endfor %}
         </section>
     {% endif %}
 
 {% endblock %}
+
+
+{#{% extends 'mainapp/base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block container %}#}
+{#    <header class="header header-overlap padding-site">#}
+{#        {% include 'mainapp/includes/inc_header.html' %}#}
+{#    </header>#}
+{#    <section class="product-top padding-site">#}
+{#        <div></div>#}
+{#        <h2 class="product-top-title">Our Products Range</h2>#}
+{#    </section>#}
+{#    <div class="products padding-site">#}
+{#        {% include 'mainapp/includes/inc_products_nav.html' %}#}
+{#        <h2 class="product-list-title">Category: "{{ category.name|title }}"</h2>#}
+{##}
+{#        <div class="paginator">#}
+{##}
+{#            {% if paginated_products.has_previous %}#}
+{#                {% if category.pk %}#}
+{#                    <a class="pagination-arrow" href="{% url 'products:page' category.pk paginated_products.previous_page_number %}"><</a>#}
+{#                {% else %}#}
+{#                    <a class="pagination-arrow" href="{% url 'products:catalog' paginated_products.previous_page_number %}"><</a>#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#                <span class="current">#}
+{#                    page {{ paginated_products.number }} of#}
+{#                    {{ paginated_products.paginator.num_pages }}#}
+{#                </span>#}
+{#            {% if paginated_products.has_next %}#}
+{#                {% if category.pk %}#}
+{#                    <a class="pagination-arrow" href="{% url 'products:page' category.pk paginated_products.next_page_number %}">></a>#}
+{#                {% else %}#}
+{#                    <a class="pagination-arrow" href="{% url 'products:catalog' paginated_products.next_page_number %}">></a>#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{##}
+{#        </div>#}
+{##}
+{#        <section class="products-content">#}
+{##}
+{#            {% for product in paginated_products %}#}
+{#                <article class="product" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">#}
+{#                <div class="product-in-box-content">#}
+{#                    <a class="product-in-box-link" href="{% url 'product-details' product.pk %}">#}
+{#                        <img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow">#}
+{#                    </a>#}
+{#                    <h3 class="product-in-box-name">{{ product.name }}</h3>#}
+{#                    <p class="product-in-box-details">{{ product.description }}</p>#}
+{#                </div>#}
+{#                </article>#}
+{#            {% endfor %}#}
+{##}
+{#        </section>#}
+{##}
+{#        {% if paginated_products|length == 12 %}#}
+{#            <section class="product-sync"><a href="#" class="product-sync-link"><i class="fas fa-sync-alt"></i></a></section>#}
+{#        {% endif %}#}
+{##}
+{#    </div>#}
+{##}
+{#    {% if category.name == 'ALL' %}#}
+{#        <section class="promo-product">#}
+{#            {% for product in products_list|slice:"14:16" %}#}
+{#                <article class="promo-product-content promo-product-img" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">#}
+{#                    <div class="promo-text">#}
+{#                        <h4 class="promo-h4">exclusive</h4>#}
+{#                        <h2 class="promo-h2">{{ product.name }}</h2>#}
+{#                        <p class="promo-p">{{ product.short_desc }}</p>#}
+{#                        <a href="{% url 'product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>#}
+{#                    </div>#}
+{#                </article>#}
+{#            {% endfor %}#}
+{#        </section>#}
+{#    {% endif %}#}
+{##}
+{#{% endblock %}#}

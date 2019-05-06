@@ -14,16 +14,14 @@
                         <img class="basket-bag" src="{% static 'img/bag.svg' %}" alt="bag">
                         <h3 class="basket-body-name-h3"></h3>Shopping Cart&nbsp;
 
-                        {% if request.user.first_name and request.user.first_name|length <= 15 %}
-                            ({{ request.user.first_name|title }})
-                        {% elif request.user.username|length <= 15 %}
-                            ({{ request.user.username }})
+                        {% if request.user.first_name %}
+                            ({{ request.user.first_name|truncatechars_html:15|title }})
                         {% else %}
-                            (user)
+                            {{ request.user.username|truncatechars_html:15|title }}
                         {% endif %}
 
                     </div>
-                    <a class="basket-back-to-link" href="{% url 'main' %}">
+                    <a class="basket-back-to-link" href="{% url 'main:index' %}">
                         <div class="basket-back-to-button">Continue&nbsp;shopping</div>
                     </a>
                 </div>

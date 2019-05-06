@@ -4,14 +4,17 @@
 {% block content %}
 
     <div class="auth-form-name">Edit form</div>
-    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post"
-          enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ edit_form.as_p }}
-        <input class="form-control" type="submit" value="save">
-    </form>
-    <a href="{% url 'main' %}" class="btn btn-round form-control last">back to main page</a>
-    <div class="user_avatar"><img src="/media/{{ user.avatar }}" alt="user.avatar"></div>
+
+    <div class="form-wrapper">
+        <form class="form-horizontal form-horizontal-edit" action="{% url 'auth:edit' %}" method="post"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ edit_form.as_p }}
+            <input class="form-control" type="submit" value="save">
+        </form>
+        <a href="{% url 'main:index' %}" class="form-control form-horizontal form-control-back-to">back to main page</a>
+        <div><img class="user_avatar" src="/media/{{ user.avatar|default:'users_avatars/default.svg' }}" alt="user.avatar"></div>
+    </div>
 
 {% endblock %}
 

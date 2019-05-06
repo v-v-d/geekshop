@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
     <div class="auth-form-name">Register form</div>
     <form class = "form-horizontal" action = "{% url 'auth:register' %}" method = "post" enctype = "multipart/form-data">
     {% csrf_token %}
@@ -9,5 +10,6 @@
     <br>
     <input class = "form-control" type = "submit" value = "register">
     </form>
+
 {% endblock %}
 

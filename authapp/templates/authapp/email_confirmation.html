@@ -1,0 +1,15 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="verification-message">
+        {% if user %}
+            <h3>Please check your email to complete the verification</h3>
+        {% else %}
+            <h3>Verification failed</h3>
+        {% endif %}
+        <a class="verification-message-button" href="{% url 'main:index' %}">back to the shop</a>
+    </div>
+
+{% endblock %}
