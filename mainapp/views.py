@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from mainapp.models import ProductCategory, Product
+from mainapp.models import ProductCategory, Product, Contacts
 from basketapp.models import Basket
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -73,8 +73,10 @@ def products(request, pk=None, page=1):
 
 
 def contacts(request):
+
     context = {
         'page_title': 'Interior - contacts',
+        'contacts': Contacts.objects.filter(is_active=True),
         # **get_common_context(request),
     }
     return render(request, 'mainapp/contacts.html', context)
@@ -103,4 +105,3 @@ def product_details(request, pk):
         # **get_common_context(request),
     }
     return render(request, 'mainapp/product-details.html', context)
-

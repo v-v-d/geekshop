@@ -16,7 +16,7 @@
                 <div class="admin-object-name admin-object-name-categories"><b>{{ object.name|title }}</b></div>
                 <div class="admin-object-desc admin-object-desc-categories">{{ object.description|title }}</div>
                 <div class="admin-object-actions admin-object-actions-categories">
-                    <a class="admin-object-actions-link" href= {% url 'admin_custom:products' object.pk %}>товары категории</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:products' object.pk %}>товары&nbsp;категории</a>
                     <a class="admin-object-actions-link" href= {% url 'admin_custom:category_update' object.pk %}>редактировать</a>
                     {% if object.is_active == True %}
                         <a class="admin-object-actions-link admin-object-actions-link-red" href= {% url 'admin_custom:category_delete' object.pk %}>удалить</a>

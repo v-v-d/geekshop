@@ -6,15 +6,22 @@
 
     <div class="form-wrapper">
         <div class="auth-form-name">Login form</div>
-            <form class="form-horizontal" method="post">
-                {% csrf_token %}
-                {% if next %}
-                    <input type = "hidden" name = "next" value = "{{ next }}">
-                {% endif %}
-                {{ login_form.as_p }}
-                <br>
-                <input class="form-control" type="submit" value="LOGIN">
-            </form>
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            {% if next %}
+                <input type = "hidden" name = "next" value = "{{ next }}">
+            {% endif %}
+            {{ login_form.as_p }}
+            <br>
+            <input class="form-control" type="submit" value="LOGIN">
+        </form>
+        <div class="social-login-buttons">
+            {% for social in socials %}
+                <a href="{% url 'social:begin' social %}">
+                    <div class="social-login-button" style="background-image: url('/media/socials_images/{{ social }}.svg')"></div>
+                </a>
+            {% endfor %}
+        </div>
     </div>
 
 

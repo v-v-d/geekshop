@@ -4,12 +4,12 @@ from django.urls import reverse
 from django.conf import settings
 from django.core.mail import send_mail
 
-from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from authapp.models import ShopUser
 
 
 def login(request):
-    login_form = ShopUserLoginForm(data=request.POST)
+    login_form = ShopUserLoginForm(data=request.POST or None)
 
     next = request.GET['next'] if 'next' in request.GET.keys() else ''
 
@@ -25,10 +25,13 @@ def login(request):
             else:
                 return HttpResponseRedirect(reverse('main:index'))
 
+    socials = ('vk-oauth2', 'google-oauth2')
+
     context = {
         'title': 'login',
         'login_form': login_form,
         'next': next,
+        'socials': socials,
     }
     return render(request, 'authapp/login.html', context)
 
@@ -43,21 +46,16 @@ def register(request):
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
 
         if register_form.is_valid():
-            # auth.login(request, register_form.save())
             user = register_form.save()
             if send_verify_mail(user):
-                # print('сообщение подтверждения отправлено')
-                # return render(request, 'authapp/email_confirmation.html', {'title': 'email confirmation'})
-                # return HttpResponseRedirect(reverse('auth:register'))
-                return HttpResponseRedirect(reverse('auth:email_confirmation'))
+                return render(request, 'authapp/email_confirmation.html', {'title': 'email confirmation'})
             else:
-                # print('ошибка отправки сообщения')
                 return HttpResponseRedirect(reverse('auth:register'))
-                # return HttpResponseRedirect(reverse('main:index'))
     else:
         register_form = ShopUserRegisterForm()
-        context = {'title': 'register', 'register_form': register_form}
-        return render(request, 'authapp/register.html', context)
+
+    context = {'title': 'register', 'register_form': register_form}
+    return render(request, 'authapp/register.html', context)
 
 
 def edit(request):
@@ -65,12 +63,20 @@ def edit(request):
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
+        profile_form = ShopUserProfileEditForm(request.POST, request.FILES, instance=request.user.shopuserprofile)
+
+        if edit_form.is_valid() and profile_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('auth:edit'))
     else:
         edit_form = ShopUserEditForm(instance=request.user)
-        context = {'title': title, 'edit_form': edit_form}
+        profile_form = ShopUserProfileEditForm(instance=request.user.shopuserprofile)
+
+    context = {
+        'title': title,
+        'edit_form': edit_form,
+        'profile_form': profile_form,
+    }
 
     return render(request, 'authapp/edit.html', context)
 
@@ -105,5 +111,5 @@ def verify(request, email, activation_key):
         return HttpResponseRedirect(reverse('main:index'))
 
 
-def email_confirmation(request):
-    return render(request, 'authapp/email_confirmation.html', {'title': 'email confirmation'})
+def age_error(request):
+    return render(request, 'authapp/age_error.html')

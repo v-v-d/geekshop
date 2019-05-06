@@ -20,19 +20,25 @@
                                 {{ object.last_name|title }}
                             {% endif %}
                             {% else %}
-                                None
+                                нет данных
                         {% endif %}
                     </p>
-                    <p><b>age:</b>&nbsp;{{ object.age }}&nbsp;лет</p>
-                    <p><b>email:</b>&nbsp;{{ object.email }}</p>
-                    <p><b>logged:</b>&nbsp;{{ object.last_login }}</p>
-                </div>
-                <div class="user_role">
-                    {% if object.is_superuser %}
-                        администратор
-                    {% else %}
-                        пользователь
-                    {% endif %}
+                    <p><b>age:&nbsp;</b>
+                        {% if object.age %}
+                            {{ object.age }}&nbsp;лет
+                        {% else %}
+                            нет данных
+                        {% endif %}
+                    </p>
+                    <p><b>email:&nbsp;</b>{{ object.email }}</p>
+                    <p><b>logged:&nbsp;</b>{{ object.last_login }}</p>
+                    <p><b>role:&nbsp;</b>
+                        {% if object.is_superuser %}
+                            администратор
+                        {% else %}
+                            пользователь
+                        {% endif %}
+                    </p>
                 </div>
                 <div class="admin-object-actions">
                     <a class="admin-object-actions-link" href= {% url 'admin_custom:user_update' object.pk %}>редактировать</a>

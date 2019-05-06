@@ -1,0 +1,21 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="admin-new-item">
+        <h4 class="admin-item-name">
+            {% if request.resolver_match.url_name == 'contact_create' %}
+                Создание контакта
+            {% else %}
+                Редактирование контакта
+            {% endif %}
+        </h4>
+        <a class="admin-new-item-button" href={% url 'admin_custom:contacts' %}>К списку контактов</a>
+    </div>
+
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="form-control" type="submit" value="сохранить">
+    </form>
+{% endblock %}

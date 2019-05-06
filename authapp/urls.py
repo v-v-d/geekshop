@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^register/', authapp.register, name='register'),
     url(r'^edit/', authapp.edit, name='edit'),
     url(r'^verify/(?P<email>.+)/(?P<activation_key>\w+)/$', authapp.verify, name='verify'),
-    url(r'^email_confirmation/$', authapp.email_confirmation, name='email_confirmation'),
+    url(r'^age_error/$', authapp.age_error, name='age_error'),
 ]

@@ -4,7 +4,7 @@
 {% for item in basket_items %}
     <div class="basket-row">
         <a class="basket-product-img-link" href="{% url 'main:product-details' item.product.pk %}" target="_blank">
-            <img class="basket-product-img" src="/media/{{ item.product.image }}">
+            <div class="basket-product-img" style="background-image: url('/media/{{ item.product.image|default:'products_images/default.svg' }}')"></div>
         </a>
         <div class="basket-product-about">
             <h4 class="basket-product-name">

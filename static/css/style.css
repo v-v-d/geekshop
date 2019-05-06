@@ -1147,6 +1147,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 370px;
     height: 370px;
     border: 1px solid #9c9c9c;
@@ -1323,11 +1324,14 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .basket-product-about {
-    width: 100%;
     margin: 0 15px;
+    width: 400px;
 }
 
 .basket-product-description {
@@ -1587,9 +1591,13 @@ body {
 }
 
 .admin-text-about {
-    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 20px 0;
+    width: 100%;
+    line-height: 0;
 }
-
 
 .admin-object-desc {
     font-size: 12px;
@@ -1626,6 +1634,7 @@ body {
     border-radius: 15px;
     border: none;
     outline: none;
+    width: 140px;
 }
 
 .admin-object-actions-link:hover {
@@ -1642,17 +1651,20 @@ body {
 
 .admin-object-actions-categories {
     display: flex;
+    flex-direction: column;
+    width: 160px;
 }
 
 .admin-object-desc-categories {
     margin: 0;
-    display: block;
-    width: 250px;
+    padding: 0 20px;
+    width: 100%;
+    font-size: 14px;
 }
 
 .admin-object-name-categories {
-    display: block;
-    width: 80px;
+    width: 120px;
+    word-break: break-all;
 }
 
 .admin-object-record-delete {
@@ -1676,6 +1688,18 @@ body {
     background-color: #a1423a;
     text-decoration: none;
     color: #fff;
+}
+
+.admin-object-desc-contacts {
+    color: #000;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
+}
+
+.admin-object-name-contacts {
+    width: 250px;
+    word-break: break-word;
 }
 
 .form-horizontal {
@@ -1785,6 +1809,42 @@ body {
     color: #fff;
     text-decoration: none;
     background-color: #3c793c;
+}
+
+.social-login-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-login-button {
+    height: 40px;
+    width: 40px;
+    margin: 20px 10px;
+}
+
+.social-login-button:hover {
+    opacity: 0.7;
+}
+
+.social-login-button:active {
+    opacity: 0.5;
+}
+
+.settings-button {
+    width: 30px;
+    height: 30px;
+    margin: 3px 0 0 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.settings-button:hover {
+    opacity: 0.7;
+}
+
+.settings-button:active {
+    opacity: 0.5;
 }
 
 input[type=number]::-webkit-inner-spin-button,

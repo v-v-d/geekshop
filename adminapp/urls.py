@@ -19,4 +19,10 @@ urlpatterns = [
     url(r'^products/read/(?P<pk>\d+)/$', adminapp.ProductReadDetailView.as_view(), name='product_read'),
     url(r'^products/update/(?P<pk>\d+)/$', adminapp.ProductUpdateView.as_view(), name='product_update'),
     url(r'^products/delete/(?P<pk>\d+)/$', adminapp.ProductDeleteView.as_view(), name='product_delete'),
+
+    url(r'^contacts/create/$', adminapp.ContactsCreateView.as_view(), name='contact_create'),
+    url(r'^contacts/read/$', adminapp.ContactsListView.as_view(), name='contacts'),
+    url(r'^contacts/update/(?P<pk>\d+)/$', adminapp.ContactsUpdateView.as_view(), name='contact_update'),
+    url(r'^contacts/delete/(?P<pk>\d+)/$', adminapp.ContactsDeleteView.as_view(), name='contact_delete'),
+
 ]
