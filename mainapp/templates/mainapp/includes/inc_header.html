@@ -48,15 +48,17 @@
             <a class="menu-auth-link" href = "{% url 'auth:logout' %}">logout</a>
         </span>
         {% if user.is_superuser %}
-            <a class="menu-auth menu-auth-link" href = "{% url 'admin_custom:users' %}">админка</a>
+            <a href="{% url 'admin_custom:users' %}">
+                <div class="settings-button" style="background-image: url({% static 'img/settings.svg' %})"></div>
+            </a>
+
+{#            <a class="menu-auth menu-auth-link" href = "{% url 'admin_custom:users' %}">админка</a>#}
         {% endif %}
     {% else %}
         <span class="menu-auth">
             <a class="menu-auth-link" href = "{% url 'auth:login' %}">login</a>
             <br>
             <a class="menu-auth-link" href = "{% url 'auth:register' %}">register</a>
-            <br>
-            <a class="menu-auth-link" href="{% url 'social:begin' 'vk-oauth2' %}">login via VK</a>
         </span>
     {% endif %}
 </ul>

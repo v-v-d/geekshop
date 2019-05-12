@@ -1,0 +1,32 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="categories_list">
+        <div class="admin-new-item">
+            <h4 class="admin-item-name">Контакты</h4>
+            <a class="admin-new-item-button" href={% url 'admin_custom:contact_create' %}>Создать новый контакт</a>
+        </div>
+
+        {% for object in object_list %}
+            <div class="admin-object-record
+                 {% if not object.is_active %}
+                    not_active
+                {% endif %}">
+                <div class="admin-object-name admin-object-name-contacts"><b>{{ object.name|upper }}</b></div>
+                <div class="admin-object-desc admin-object-desc-contacts">
+                    <p><b>Phone:&nbsp;</b>{{ object.phone }}</p>
+                    <p><b>Email:&nbsp;</b>{{ object.email|lower }}</p>
+                    <p><b>Address:&nbsp;</b>{{ object.address|capfirst }}</p>
+                </div>
+                <div class="admin-object-actions admin-object-actions-categories">
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:contact_update' object.pk %}>редактировать</a>
+                    {% if object.is_active == True %}
+                        <a class="admin-object-actions-link admin-object-actions-link-red" href= {% url 'admin_custom:contact_delete' object.pk %}>удалить</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

@@ -30,3 +30,18 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
+
+
+class Contacts(models.Model):
+    class Meta:
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
+
+    name = models.CharField(verbose_name='Location name', max_length=128)
+    phone = models.CharField(verbose_name='Phone', max_length=32)
+    email = models.EmailField(verbose_name='email', unique=True)
+    address = models.CharField(verbose_name='Address', max_length=256)
+    is_active = models.BooleanField(verbose_name='active', default=True)
+
+    def __str__(self):
+        return self.name

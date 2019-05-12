@@ -3,12 +3,12 @@ from django.shortcuts import HttpResponse
 from django.views import View
 
 from authapp.models import ShopUser
-from mainapp.models import Product, ProductCategory
+from mainapp.models import Product, ProductCategory, Contacts
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import HttpResponseRedirect, render, get_object_or_404
 from django.urls import reverse
 from authapp.forms import ShopUserRegisterForm
-from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm
+from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm, ContactsEditForm
 
 # class-based view
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
@@ -161,10 +161,6 @@ class ProductCreateView(CreateView):
         context['category_name'] = get_object_or_404(ProductCategory, pk=self.kwargs['pk']).name
         return context
 
-    def get_initial(self):
-        self.initial['category'] = self.kwargs['pk']
-        return self.initial
-
     def get_success_url(self):
         return reverse_lazy('admin_custom:products', kwargs=self.kwargs)
 
@@ -193,6 +189,10 @@ class ProductUpdateView(UpdateView):
         context['category_name'] = get_object_or_404(Product, pk=self.kwargs['pk']).category.name
         return context
 
+    def get_initial(self):
+        self.initial['category'] = get_object_or_404(Product, pk=self.kwargs['pk']).category.pk
+        return self.initial
+
     def get_success_url(self):
         category_pk = get_object_or_404(Product, pk=self.kwargs['pk']).category.pk
         return reverse_lazy('admin_custom:products', kwargs={'pk': category_pk})
@@ -217,3 +217,60 @@ class ProductDeleteView(DeleteView):
         product.is_active = False
         product.save()
         return HttpResponseRedirect(self.get_success_url())
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class ContactsListView(ListView):
+    model = Contacts
+    template_name = 'adminapp/contacts.html'
+    ordering = ['-is_active', 'name']
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactsListView, self).get_context_data(**kwargs)
+        context['page_title'] = 'админка/контакты'
+        return context
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class ContactsCreateView(CreateView):
+    model = Contacts
+    template_name = 'adminapp/contact_update.html'
+    form_class = ContactsEditForm
+    success_url = reverse_lazy('admin_custom:contacts')
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactsCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = 'контакты/создание'
+        return context
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class ContactsUpdateView(UpdateView):
+    model = Contacts
+    form_class = ContactsEditForm
+    template_name = 'adminapp/contact_update.html'
+    success_url = reverse_lazy('admin_custom:contacts')
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactsUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = 'контакты/редактирование'
+        return context
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class ContactsDeleteView(DeleteView):
+    model = Contacts
+    template_name = 'adminapp/contact_delete.html'
+    success_url = reverse_lazy('admin_custom:contacts')
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactsDeleteView, self).get_context_data(**kwargs)
+        context['page_title'] = 'контакты/удаление'
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        contact = get_object_or_404(Contacts, pk=kwargs['pk'])
+        contact.is_active = False
+        contact.save()
+        return HttpResponseRedirect(self.success_url)
+

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "California",
+    "phone": "1900 - 1234 -5678",
+    "email": "info-CA@interior.com",
+    "address": "12 W 1st St, 90001 Los Angeles, California"
+  },
+  {
+    "name": "New York",
+    "phone": "4610 - 8645 -7916",
+    "email": "info-NY@interior.com",
+    "address": "16th St, 1125 New York, New York"
+  },
+  {
+    "name": "Washington",
+    "phone": "4560 - 7346 -7412",
+    "email": "info-WA@interior.com",
+    "address": "4th St, 25301 Olympia, Washington"
+  },
+  {
+    "name": "Moscow",
+    "phone": "495 - 272 -7958",
+    "email": "info-MOW@interior.com",
+    "address": "2th Lenina St, 728465 Moscow, Russia"
+  },
+  {
+    "name": "Saint-Petersburg",
+    "phone": "812 - 466 -7423",
+    "email": "info-SP@interior.com",
+    "address": "2nd Kazantskaya St, 197745 Los Saint-Petersburg, Russia"
+  }
+]

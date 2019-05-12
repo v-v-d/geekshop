@@ -1,0 +1,11 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="verification-message">
+        <h3>Login failed because of your age!</h3>
+        <a class="verification-message-button" href="{% url 'main:index' %}">back to the shop</a>
+    </div>
+
+{% endblock %}

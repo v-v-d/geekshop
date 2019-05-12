@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^basket/', include('basketapp.urls', namespace='basket')),
     url(r'^', include('social_django.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
-    url(r'^__debug__/', include(debug_toolbar.urls)),
+    # url(r'^__debug__/', include(debug_toolbar.urls)),
 ]
 
 if settings.DEBUG:

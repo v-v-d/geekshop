@@ -4,13 +4,14 @@
 {% block content %}
 
     <div class="verification-message">
-        {% if user %}
+        {% if user.username %}
             <h3>Congratulations!</h3>
             <h4>User <b>{{ user.username }}</b> is verified</h4>
+            <a class="verification-message-button" href="{% url 'main:index' %}">start shopping</a>
         {% else %}
             <h3>Verification failed</h3>
+            <a class="verification-message-button" href="{% url 'main:index' %}">back to main page</a>
         {% endif %}
-        <a class="verification-message-button" href="{% url 'main:index' %}">start shopping</a>
     </div>
 
 {% endblock %}

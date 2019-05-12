@@ -10,6 +10,7 @@
               enctype="multipart/form-data">
             {% csrf_token %}
             {{ edit_form.as_p }}
+            {{ profile_form.as_p }}
             <input class="form-control" type="submit" value="save">
         </form>
         <a href="{% url 'main:index' %}" class="form-control form-horizontal form-control-back-to">back to main page</a>

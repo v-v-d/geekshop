@@ -12,4 +12,8 @@
         admin-menu-list{% if request.resolver_match.url_name in 'categories, category_create, category_update, category_delete' %}-active{% endif %}">
         <a class="admin-menu-link" href="{% url 'admin_custom:categories' %}">категории</a>
     </li>
+    <li class="admin-menu-list
+        admin-menu-list{% if request.resolver_match.url_name in 'contacts, contact_create, contact_update, contact_delete' %}-active{% endif %}">
+        <a class="admin-menu-link" href="{% url 'admin_custom:contacts' %}">контакты</a>
+    </li>
 </ul>
