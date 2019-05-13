@@ -7,7 +7,7 @@
         <div class="admin-object-actions admin-object-actions-delete">
             <form action="{% url 'admin_custom:category_delete' productcategory.pk %}" method="post">
                 {% csrf_token %}
-                <input class="admin-object-actions-link admin-object-actions-link-delete" type="submit" value="удалить">
+                <input class="btn btn-danger admin-object-actions-link-delete" type="submit" value="Удалить">
             </form>
             <a class="admin-object-actions-link admin-object-actions-link-delete" href="{% url 'admin_custom:categories' %}">Отмена</a>
         </div>

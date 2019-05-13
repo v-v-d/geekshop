@@ -12,39 +12,19 @@
     </section>
     <section class="contacts-box padding-site">
 
-        {% for contact in contacts %}
+        {% for object in object_list %}
             <div class="contact">
                 <i class="fas fa-map-marker-alt"></i>
-                <h3 class="contacts-h3">{{ contact.name|upper }}</h3>
+                <h3 class="contacts-h3">{{ object.name|upper }}</h3>
                 <p class="contacts-p-1">Phone:</p>
-                <p class="contacts-p-2">{{ contact.phone }}</p>
+                <p class="contacts-p-2">{{ object.phone }}</p>
                 <p class="contacts-p-1">Email:</p>
-                <p class="contacts-p-2">{{ contact.email|lower }}</p>
+                <p class="contacts-p-2">{{ object.email|lower }}</p>
                 <p class="contacts-p-1">Address:</p>
-                <p class="contacts-p-3">{{ contact.address|capfirst }}</p>
+                <p class="contacts-p-3">{{ object.address|capfirst }}</p>
             </div>
         {% endfor %}
 
-{#        <div class="contact">#}
-{#            <i class="fas fa-map-marker-alt"></i>#}
-{#            <h3 class="contacts-h3">California</h3>#}
-{#            <p class="contacts-p-1">Phone:</p>#}
-{#            <p class="contacts-p-2">1900&nbsp;&mdash; 1234 &minus;5678</p>#}
-{#            <p class="contacts-p-1">Email:</p>#}
-{#            <p class="contacts-p-2">info@interior.com</p>#}
-{#            <p class="contacts-p-1">Address:</p>#}
-{#            <p class="contacts-p-3">12&nbsp;W 1st St, 90001 Los Angeles, California</p>#}
-{#        </div>#}
-{#        <div class="contact">#}
-{#            <i class="fas fa-map-marker-alt"></i>#}
-{#            <h3 class="contacts-h3">California</h3>#}
-{#            <p class="contacts-p-1">Phone:</p>#}
-{#            <p class="contacts-p-2">1900&nbsp;&mdash; 1234 &minus;5678</p>#}
-{#            <p class="contacts-p-1">Email:</p>#}
-{#            <p class="contacts-p-2">info@interior.com</p>#}
-{#            <p class="contacts-p-1">Address:</p>#}
-{#            <p class="contacts-p-3">12&nbsp;W 1st St, 90001 Los Angeles, California</p>#}
-{#        </div>#}
     </section>
 </main>
 {% endblock %}

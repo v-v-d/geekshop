@@ -49,12 +49,6 @@ body {
     width: 1170px;
 }
 
-.menu {
-    display: flex;
-    list-style-type: none;
-    margin-top: 57px;
-}
-
 .padding-site {
     padding-left: 98px;
     padding-right: 98px;
@@ -62,6 +56,26 @@ body {
 
 .logo {
     margin-top: 64px;
+}
+
+.menu {
+    display: flex;
+    list-style-type: none;
+    margin-top: 57px;
+}
+
+.menu-in {
+    display: none;
+}
+
+.menu-list:hover .menu-in {
+  display: block;
+}
+
+.menu-list {
+    list-style-type: none;
+    width: 120px;
+    text-align: center;
 }
 
 .menu-link {
@@ -72,6 +86,19 @@ body {
     font-weight: 300;
     text-transform: uppercase;
     text-decoration: none;
+}
+
+.menu-link-auth {
+    font-weight: 600;
+}
+
+.menu-link-in {
+    background-color: #fcfcfc;
+    margin-top: 3px;
+}
+
+.menu-link-in:hover {
+    background-color: #f7f7f7;
 }
 
 .menu-link:hover {
@@ -1036,6 +1063,10 @@ body {
     margin-left: 22px;
 }
 
+.product-page-empty {
+    height: 120px;
+}
+
 .product-page-nav {
     height: 70px;
     background-color: #f4f4f4;
@@ -1678,6 +1709,10 @@ body {
 
 .admin-object-actions-link-delete {
     margin: 0 10px;
+    height: 30px;
+    font-size: 12px;
+    border-radius: 15px;
+    width: 140px;
 }
 
 .admin-object-actions-link-red {
@@ -1758,7 +1793,6 @@ body {
 
 .form-control-back-to:hover {
     text-decoration: none;
-    color: #555;
 }
 
 .paginator {
@@ -1772,6 +1806,12 @@ body {
     font-weight: 600;
     color: #555;
     margin: 0 7px;
+}
+
+.admin-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .verification-message {
@@ -1845,6 +1885,36 @@ body {
 
 .settings-button:active {
     opacity: 0.5;
+}
+
+.container-order {
+    padding: 50px 350px;
+}
+
+.order-product-price {
+    flex-direction: column;
+    align-self: baseline;
+}
+
+.order-product-totals {
+    text-align: end;
+}
+
+.order-wrapper {
+    border-bottom: 1px solid #eee;
+    background-color: #eee;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.order-h3 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.admin-order-wrapper {
+    border-radius: 0;
 }
 
 input[type=number]::-webkit-inner-spin-button,

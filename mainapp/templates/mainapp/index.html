@@ -7,7 +7,7 @@
         {% include 'mainapp/includes/inc_header.html' %}
     </header>
 
-        {% for product in products|dictsortreversed:"pk"|slice:":1" %}
+        {% for product in object_list|dictsortreversed:"pk"|slice:":1" %}
             <section class="slider padding-site" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                 <div></div>
                 <div class="slider-text">
@@ -34,7 +34,7 @@
         </article>
         <section class="featured-product-box">
 
-            {% for product in products|slice:":4" %}
+            {% for product in object_list|slice:":4" %}
                 <article class="featured-product-in-box" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                     <div class="product-in-box-content">
                         <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
@@ -48,7 +48,7 @@
     </section>
     <section class="promo-product">
 
-        {% for product in products|slice:"16:18" %}
+        {% for product in object_list|slice:"16:18" %}
             <article class="promo-product-content promo-product-img" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                 <div class="promo-text">
                     <h4 class="promo-h4">exclusive</h4>
@@ -67,7 +67,7 @@
         </section>
         <section class="trending-products-content">
 
-            {% for product in products|dictsortreversed:"quantity"|slice:":6" %}
+            {% for product in object_list|dictsortreversed:"quantity"|slice:":6" %}
                 <article class="trending-product" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
                     <div class="product-in-box-content">
                         <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
@@ -80,7 +80,7 @@
         </section>
     </section>
 
-    {% for product in products|dictsortreversed:"pk"|slice:"1:2" %}
+    {% for product in object_list|dictsortreversed:"pk"|slice:"1:2" %}
         <section class="hot-deals padding-site" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
             <div></div>
             <div class="hot-deals-text">
@@ -100,25 +100,25 @@
     <section class="exclusive padding-site">
         <section class="exclusive-content">
 
-            {% for product in products|dictsort:"quantity"|slice:":1" %}
-                <section class="exclusive-content-product" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
+            {% for object in object_list|dictsort:"quantity"|slice:":1" %}
+                <section class="exclusive-content-product" style="background-image: url('/media/{{ object.image|default:'products_images/default.svg' }}')">
                     <div class="exclusive-content-product-text">
                         <h4 class="exclusive-content-product-tag">exclusive</h4>
-                        <h2 class="exclusive-content-product-name">{{ product.name }}</h2>
-                        <p class="exclusive-content-product-details">{{ product.short_desc }}</p>
-                        <a href="{% url 'main:product-details' product.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                        <h2 class="exclusive-content-product-name">{{ object.name }}</h2>
+                        <p class="exclusive-content-product-details">{{ object.short_desc }}</p>
+                        <a href="{% url 'main:product-details' object.pk %}" class="button">order&nbsp;us <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
                     </div>
                 </section>
             {% endfor %}
 
             <section class="exclusive-content-product-box">
 
-                {% for product in products|slice:"5:15"|dictsort:"quantity"|slice:":4" %}
-                    <article class="exclusive-content-product-in-box" style="background-image: url('/media/{{ product.image|default:'products_images/default.svg' }}')">
+                {% for object in object_list|slice:"5:15"|dictsort:"quantity"|slice:":4" %}
+                    <article class="exclusive-content-product-in-box" style="background-image: url('/media/{{ object.image|default:'products_images/default.svg' }}')">
                         <div class="product-in-box-content">
-                            <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
-                            <h3 class="product-in-box-name">{{ product.name }}</h3>
-                            <p class="product-in-box-details">{{ product.short_desc }}</p>
+                            <a class="product-in-box-link" href="{% url 'main:product-details' object.pk %}"><img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+                            <h3 class="product-in-box-name">{{ object.name }}</h3>
+                            <p class="product-in-box-details">{{ object.short_desc }}</p>
                         </div>
                     </article>
                 {% endfor %}

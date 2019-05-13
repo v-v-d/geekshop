@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static%}
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {{ page_title|title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+              crossorigin="anonymous">
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
+        <script src="{% static 'js/basket_scripts.js' %}"></script>
+        <script src="{% static 'js/orders_scripts.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+<div class="order_container container-order">
+    {% block container %}
+
+    {% endblock %}
+
+</div>
+</body>
+</html>

@@ -11,9 +11,9 @@
             {% csrf_token %}
             {{ edit_form.as_p }}
             {{ profile_form.as_p }}
-            <input class="form-control" type="submit" value="save">
+            <input class="btn btn-success form-control" type="submit" value="save">
         </form>
-        <a href="{% url 'main:index' %}" class="form-control form-horizontal form-control-back-to">back to main page</a>
+        <a href="{% url 'main:index' %}" class="btn btn-primary form-control form-horizontal form-control-back-to">back to main page</a>
         <div><img class="user_avatar" src="/media/{{ user.avatar|default:'users_avatars/default.svg' }}" alt="user.avatar"></div>
     </div>
 

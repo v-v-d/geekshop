@@ -8,7 +8,8 @@
     {% csrf_token %}
     {{ register_form.as_p }}
     <br>
-    <input class = "form-control" type = "submit" value = "register">
+    <input class = "btn btn-success form-control" type = "submit" value = "register">
+    <a href="{% url 'main:index' %}" class="btn btn-primary form-control form-control-back-to">back to main page</a>
     </form>
 
 {% endblock %}

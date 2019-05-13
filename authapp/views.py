@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from authapp.models import ShopUser
 
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+
 
 def login(request):
     login_form = ShopUserLoginForm(data=request.POST or None)
@@ -58,6 +60,15 @@ def register(request):
     return render(request, 'authapp/register.html', context)
 
 
+class UserUpdateView(UpdateView):
+    model = ShopUser
+    form_class = ShopUserEditForm
+    template_name = 'authapp/edit.html'
+
+    def get_queryset(self):
+        return
+
+
 def edit(request):
     title = 'edit'
 
@@ -100,7 +111,6 @@ def verify(request, email, activation_key):
         if user.activation_key == activation_key and not user.is_activation_key_expired():
             user.is_active = True
             user.save()
-            # auth.login(request, user)
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return render(request, 'authapp/verification.html', {'title': 'verification'})
         else:

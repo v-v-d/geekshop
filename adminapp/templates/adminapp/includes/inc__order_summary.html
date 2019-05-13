@@ -1,0 +1,26 @@
+{% if object %}
+    <div class="order-wrapper admin-order-wrapper">
+        <div class="order-h3">Order&nbsp;№{{ object.pk }}&nbsp;from&nbsp;{{ object.created|date:"Y-m-d H:i:s" }}</div>
+        <div class="order-h5"><b>customer:</b>&nbsp;
+            {% if object.user.first_name %}
+                {{ object.user.first_name }}
+                {% if object.user.last_name %}
+                    {{ object.user.last_name }}
+                {% endif %}
+            {% else %}
+                {{ object.user.username }}
+            {% endif %}
+        </div>
+        <div class="order-h5"><b>updated:</b>&nbsp;{{ object.updated|date:"Y-m-d H:i:s" }}</div>
+        <div class="order-h5"><b>status:</b>&nbsp;{{ object.get_status_display }}</div>
+        <div class="order-h5">
+            <b>products total quantity:</b>&nbsp;<span class="order_total_quantity">{{ object.get_total_quantity }}</span>
+        </div>
+        <div class="order-h4">
+            <b>total price:</b>&nbsp;<span class="order_total_cost">{{ object.get_total_cost }}</span>$
+        </div>
+    </div>
+{% else %}
+    <div class="order-h3">New order</div>
+    <hr>
+{% endif %}

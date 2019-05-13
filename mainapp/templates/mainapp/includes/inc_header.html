@@ -4,61 +4,73 @@
 <a class="logo" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
 <ul class="menu">
     <li><a href="{% url 'main:index' %}"
-           class="menu-link {% if request.resolver_match.url_name == 'index' %}menu-link-active{% endif %}">HOME</a></li>
+           class="menu-link {% if request.resolver_match.url_name == 'index' %}menu-link-active{% endif %}">HOME</a>
+    </li>
     <li><a href="{% url 'main:products' %}"
-           class="menu-link {% if request.resolver_match.url_name in 'products, catalog, category, page' %}menu-link-active{% endif %}">PRODUCTS</a></li>
+           class="menu-link {% if request.resolver_match.url_name in 'products, catalog, category, page' %}menu-link-active{% endif %}">PRODUCTS</a>
+    </li>
     <li><a href="#"
            class="menu-link {% if request.resolver_match.url_name == '#' %}menu-link-active{% endif %}">HISTORY</a></li>
     <li><a href="{% url 'main:showroom' %}"
-           class="menu-link {% if request.resolver_match.url_name in 'showroom, product-details' %}menu-link-active{% endif %}">SHOWROOM</a></li>
+           class="menu-link {% if request.resolver_match.url_name in 'showroom, product-details' %}menu-link-active{% endif %}">SHOWROOM</a>
+    </li>
     <li><a href="{% url 'main:contacts' %}"
-           class="menu-link {% if request.resolver_match.url_name == 'contacts' %}menu-link-active{% endif %}">CONTACT</a></li>
+           class="menu-link {% if request.resolver_match.url_name == 'contacts' %}menu-link-active{% endif %}">CONTACT</a>
+    </li>
     <li><a href="#" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a></li>
     <li>
-        <div class = "menu-basket">
-            <a class = "menu-basket-link" href = "{% url 'basket:view' %}">
+        <div class="menu-basket">
+            <a class="menu-basket-link" href="{% url 'basket:view' %}">
                 <img src="{% static 'img/bag.svg' %}" alt="basket">
                 {% if user.is_authenticated and user_basket|length > 0 %}
-{#                    раздача кол-ва и цены через контекстные процессоры#}
+                    {#раздача кол-ва и цены через контекстные процессоры#}
                     <h4 class="menu-basket-counter">
                         qty:&nbsp;{{ user_basket.0.get_products_total_quantity_by_user }}&nbsp;pcs
                         <br>
                         price:&nbsp;{{ user_basket.0.get_products_total_price_by_user }}$
                     </h4>
-{#                    раздача кол-ва и цены через шаблонные фильтры#}
-{#                    <h4 class="menu-basket-counter">#}
-{#                        qty:&nbsp;{{ request.user|get_products_total_quantity_by_user }}&nbsp;pcs#}
-{#                        <br>#}
-{#                        price:&nbsp;{{ request.user|get_products_total_price_by_user }}$#}
-{#                    </h4>#}
+                    {# раздача кол-ва и цены через шаблонные фильтры#}
+                    {# <h4 class="menu-basket-counter">#}
+                    {# qty:&nbsp;{{ request.user|get_products_total_quantity_by_user }}&nbsp;pcs#}
+                    {# <br>#}
+                    {# price:&nbsp;{{ request.user|get_products_total_price_by_user }}$#}
+                    {# </h4>#}
                 {% endif %}
             </a>
         </div>
     </li>
     {% if user.is_authenticated %}
-        <span class="menu-auth">
-            <a class="menu-auth-link" href = "{% url 'auth:edit' %}">
+        <li class="menu-list">
+            <a href="#" class="menu-link menu-link-auth">
                 {% if user.first_name %}
-                    {{ user.first_name|truncatechars_html:10 }}&nbsp;(edit)
+                    {{ user.first_name|truncatechars_html:10 }}
                 {% else %}
-                    {{ user.username|truncatechars_html:10 }}&nbsp;(edit)
+                    {{ user.username|truncatechars_html:10 }}
                 {% endif %}
             </a>
-            <br>
-            <a class="menu-auth-link" href = "{% url 'auth:logout' %}">logout</a>
-        </span>
-        {% if user.is_superuser %}
-            <a href="{% url 'admin_custom:users' %}">
-                <div class="settings-button" style="background-image: url({% static 'img/settings.svg' %})"></div>
-            </a>
+            <ul class="menu-in">
+                {% if user.is_superuser %}
+                    <li class="menu-list">
+                        <a href="{% url 'admin_custom:users' %}" class="menu-link menu-link-in">control</a>
+                    </li>
+                {% endif %}
+                <li class="menu-list">
+                    <a href="{% url 'auth:edit' %}" class="menu-link menu-link-in">profile</a>
+                </li>
+                <li class="menu-list">
+                    <a href="{% url 'order:order_list' %}" class="menu-link menu-link-in">orders</a>
+                </li>
+                <li class="menu-list">
+                    <a href="{% url 'auth:logout' %}" class="menu-link menu-link-in">logout</a>
+                </li>
+            </ul>
+        </li>
 
-{#            <a class="menu-auth menu-auth-link" href = "{% url 'admin_custom:users' %}">админка</a>#}
-        {% endif %}
     {% else %}
         <span class="menu-auth">
-            <a class="menu-auth-link" href = "{% url 'auth:login' %}">login</a>
+            <a class="menu-auth-link" href="{% url 'auth:login' %}">login</a>
             <br>
-            <a class="menu-auth-link" href = "{% url 'auth:register' %}">register</a>
+            <a class="menu-auth-link" href="{% url 'auth:register' %}">register</a>
         </span>
     {% endif %}
 </ul>

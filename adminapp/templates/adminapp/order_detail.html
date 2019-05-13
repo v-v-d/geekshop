@@ -1,0 +1,21 @@
+{% extends "adminapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="admin-new-item">
+        <h4 class="admin-item-name">
+            {% if request.resolver_match.url_name == 'order_create' %}
+                Создание заказа
+            {% else %}
+                Подробно о заказе
+            {% endif %}
+        </h4>
+        <a class="admin-new-item-button" href={% url 'admin_custom:orders' %}>К списку заказов</a>
+    </div>
+    {% include 'adminapp/includes/inc__order_summary.html' %}
+    <div class="basket_list">
+        {% include 'adminapp/includes/inc__basket_list.html' %}
+    </div>
+
+{% endblock %}

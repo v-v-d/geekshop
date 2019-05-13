@@ -6,6 +6,9 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+
+
 
 # def get_user_basket(user):
 #     return Basket.objects.filter(user=user) if user.is_authenticated else []
