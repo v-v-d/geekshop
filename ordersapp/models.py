@@ -42,7 +42,7 @@ class Order(models.Model):
         return self.orderitems.count()
 
     def get_total_cost(self):
-        return sum([i.quantity*i.product.price for i in self.orderitems.select_related()])
+        return sum([i.quantity * i.product.price for i in self.orderitems.select_related()])
 
     # переопределяем метод, удаляющий объект
     def delete(self):
@@ -50,8 +50,7 @@ class Order(models.Model):
             item.product.quantity += item.quantity
             item.product.save()
 
-        self.status = 'CNC'
-        self.is_active = False
+        self.status, self.is_active = 'CNC', False
         self.save()
 
 
@@ -62,3 +61,7 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
+
+    @staticmethod
+    def get_item(pk):
+        return __class__.objects.filter(pk=pk).first()
