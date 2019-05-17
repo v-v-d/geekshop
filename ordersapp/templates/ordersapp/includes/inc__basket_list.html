@@ -1,0 +1,23 @@
+{% load static %}
+
+{% for item in object.orderitems.select_related %}
+    <div class="basket-row">
+        <a class="basket-product-img-link" href="{% url 'main:product-details' item.product.pk %}" target="_blank">
+            <div class="basket-product-img" style="background-image: url('/media/{{ item.product.image|default:'products_images/default.svg' }}')"></div>
+        </a>
+        <div class="basket-product-about">
+            <h4 class="basket-product-name">
+                {{ item.product.name }}&nbsp;({{ item.product.category.name }})
+            </h4>
+            <h4 class="basket-product-description">
+                {{ item.product.short_desc }}
+            </h4>
+        </div>
+        <div class="basket-product-control">
+            <div class="basket-product-price order-product-price">
+                <h6 class="order-product-totals">${{ item.product.price }}&nbsp;x&nbsp;{{ item.quantity }}&nbsp;pcs.</h6>
+                <h6 class="order-product-totals">total:&nbsp;{{ item.get_product_cost }}$</h6>
+            </div>
+        </div>
+    </div>
+{% endfor %}

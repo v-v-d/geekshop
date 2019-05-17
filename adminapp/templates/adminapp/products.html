@@ -8,7 +8,7 @@
             <a class="admin-new-item-button" href= {% url 'admin_custom:product_create' category_pk %}>Создать новый продукт</a>
         </div>
 
-        {% for object in object_list %}
+        {% for object in page_obj %}
             <div class="admin-object-record
                 {% if not object.is_active %}
                     not_active
@@ -33,9 +33,26 @@
                         <a class="admin-object-actions-link admin-object-actions-link-red" href= {% url 'admin_custom:product_delete' object.pk %}>удалить</a>
                     {% endif %}
                 </div>
-
             </div>
         {% endfor %}
+
+        <div class="admin-pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
 
     </div>
 {% endblock %}

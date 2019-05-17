@@ -1,0 +1,12 @@
+{% extends "ordersapp/base.html" %}
+{% load static %}
+
+{% block container %}
+
+    {% include 'ordersapp/includes/inc__order_summary.html' %}
+    <div class="basket_list">
+        {% include 'ordersapp/includes/inc__basket_list.html' %}
+    </div>
+    {% include 'ordersapp/includes/inc__order_actions.html' %}
+
+{% endblock %}

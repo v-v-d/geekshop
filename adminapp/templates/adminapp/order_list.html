@@ -1,0 +1,56 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="categories_list">
+        <div class="admin-new-item">
+            <h4 class="admin-item-name">Заказы</h4>
+            <a class="admin-new-item-button" href={% url 'admin_custom:order_create' %}>Создать новый заказ</a>
+        </div>
+
+        {% for object in page_obj %}
+            <div class="admin-object-record
+                 {% if not object.is_active %}
+                    not_active
+                {% endif %}">
+                <div class="admin-object-desc admin-object-desc-contacts">
+                    <p><b>Customer:</b>&nbsp;
+                        <a class="basket-product-img-link" href="{% url 'admin_custom:user_update' object.user_id %}" target="_blank">
+                            {{ object.user|upper }}
+                        </a>
+                    </p>
+                    <p><b>Order number:&nbsp;</b>{{ object.pk }}</p>
+                    <p><b>Created:&nbsp;</b>{{ object.created }}</p>
+                    <p><b>Updated:&nbsp;</b>{{ object.updated }}</p>
+                    <p><b>Status:&nbsp;</b>{{ object.get_status_display }}</p>
+                </div>
+                <div class="admin-object-actions admin-object-actions-categories">
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:order_read' object.pk %}>подробнее</a>
+                    <a class="admin-object-actions-link" href= {% url 'admin_custom:order_update' object.pk %}>редактировать</a>
+                    {% if object.is_active == True %}
+                        <a class="admin-object-actions-link admin-object-actions-link-red" href= {% url 'admin_custom:order_delete' object.pk %}>удалить</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="admin-pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+    </div>
+{% endblock %}

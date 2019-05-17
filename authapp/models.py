@@ -44,7 +44,6 @@ class ShopUserProfile(models.Model):
     aboutMe = models.TextField(verbose_name='about me', max_length=512, blank=True)
     gender = models.CharField(verbose_name='gender', max_length=1, choices=GENDER_CHOICES, blank=True)
     user_url = models.URLField(verbose_name='user url', blank=True)
-    userpic_url = models.URLField(verbose_name='userpic url', blank=True)
     user_lang = models.CharField(verbose_name='user language', max_length=50, blank=True)
 
     @receiver(post_save, sender=ShopUser)

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
     'adminapp.apps.AdminappConfig',
+    'ordersapp.apps.OrdersappConfig'
 ]
 
 MIDDLEWARE = [
@@ -197,3 +198,5 @@ EMAIL_PORT = config.get('smtp', 'EMAIL_PORT')
 EMAIL_HOST_USER = config.get('smtp', 'EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = config.get('smtp', 'EMAIL_USE_SSL')
+
+SILENCED_SYSTEM_CHECKS = ['auth.W004']

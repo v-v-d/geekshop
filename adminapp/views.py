@@ -1,19 +1,19 @@
-from django.core.paginator import Paginator
-from django.shortcuts import HttpResponse
-from django.views import View
+from django.db import transaction
+from django.forms import inlineformset_factory
 
 from authapp.models import ShopUser
 from mainapp.models import Product, ProductCategory, Contacts
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import HttpResponseRedirect, render, get_object_or_404
-from django.urls import reverse
+from django.shortcuts import HttpResponseRedirect, get_object_or_404
 from authapp.forms import ShopUserRegisterForm
-from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm, ContactsEditForm
+from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm, ContactsEditForm, OrderEditForm
 
-# class-based view
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+
+from ordersapp.forms import OrderItemForm
+from ordersapp.models import Order, OrderItem
 
 
 @method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
@@ -21,6 +21,7 @@ class UsersListView(ListView):
     model = ShopUser
     template_name = 'adminapp/users.html'
     ordering = ['-is_active', '-is_superuser', '-is_staff', 'username']
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super(UsersListView, self).get_context_data(**kwargs)
@@ -33,7 +34,6 @@ class UsersCreateView(CreateView):
     model = ShopUser
     form_class = ShopUserRegisterForm
     template_name = 'adminapp/user_update.html'
-    # fields = '__all__'
     success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
@@ -47,7 +47,6 @@ class UsersUpdateView(UpdateView):
     model = ShopUser
     form_class = ShopUserAdminEditForm
     template_name = 'adminapp/user_update.html'
-    # fields = '__all__'
     success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
@@ -79,6 +78,7 @@ class ProductCategoryListView(ListView):
     model = ProductCategory
     template_name = 'adminapp/categories.html'
     ordering = ['-is_active', 'name']
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super(ProductCategoryListView, self).get_context_data(**kwargs)
@@ -135,7 +135,7 @@ class ProductsListView(ListView):
     model = Product
     template_name = 'adminapp/products.html'
     ordering = ['-is_active', 'name']
-    # paginate_by = 2
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super(ProductsListView, self).get_context_data(**kwargs)
@@ -224,6 +224,7 @@ class ContactsListView(ListView):
     model = Contacts
     template_name = 'adminapp/contacts.html'
     ordering = ['-is_active', 'name']
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super(ContactsListView, self).get_context_data(**kwargs)
@@ -274,3 +275,109 @@ class ContactsDeleteView(DeleteView):
         contact.save()
         return HttpResponseRedirect(self.success_url)
 
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class OrderListView(ListView):
+    model = Order
+    template_name = 'adminapp/order_list.html'
+    ordering = ['-is_active', '-created']
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'админка/заказы'
+        return context
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class OrderCreateView(CreateView):
+    model = Order
+    template_name = 'adminapp/order_form.html'
+    form_class = OrderEditForm
+    success_url = reverse_lazy('admin_custom:orders')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Interior - order create'
+        OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=10)
+
+        if self.request.POST:
+            formset = OrderFormSet(self.request.POST, self.request.FILES)
+        else:
+            formset = OrderFormSet()
+
+        context['orderitems'] = formset
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        orderitems = context['orderitems']
+
+        with transaction.atomic():
+            self.object = form.save()
+            if orderitems.is_valid():
+                orderitems.instance = self.object
+                orderitems.save()
+
+        if self.object.get_total_cost() == 0 or self.object.status == 'CNC':
+            self.object.delete()
+
+        return super().form_valid(form)
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class OrderReadDetailView(DetailView):
+    model = Order
+    template_name = 'adminapp/order_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'заказ/подробнее'
+        return context
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class OrderUpdateView(UpdateView):
+    model = Order
+    form_class = OrderEditForm
+    template_name = 'adminapp/order_form.html'
+    success_url = reverse_lazy('admin_custom:orders')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'заказы/редактирование'
+        OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
+
+        if self.request.POST:
+            context['orderitems'] = OrderFormSet(self.request.POST, self.request.FILES, instance=self.object)
+        else:
+            context['orderitems'] = OrderFormSet(instance=self.object)
+
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        orderitems = context['orderitems']
+
+        with transaction.atomic():
+            self.object = form.save()
+            if orderitems.is_valid():
+                orderitems.instance = self.object
+                orderitems.save()
+
+        if self.object.get_total_cost() == 0 or self.object.status == 'CNC':
+            self.object.delete()
+
+        return super().form_valid(form)
+
+
+@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class OrderDeleteView(DeleteView):
+    model = Order
+    template_name = 'adminapp/order_confirm_delete.html'
+    success_url = reverse_lazy('admin_custom:orders')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'заказы/удаление'
+        return context

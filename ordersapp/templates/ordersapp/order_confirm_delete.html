@@ -1,0 +1,16 @@
+{% extends 'ordersapp/base.html' %}
+{% load static %}
+
+{% block container %}
+    <div class="category_delete">
+        <div class="h1">Are you sure to delete the order?</div>
+        {% include 'ordersapp/includes/inc__order_summary.html' %}
+        <form method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit" value="delete">
+        </form>
+        <button class="btn btn-success">
+            <a href="{% url 'order:order_list' %}">cancel</a>
+        </button>
+    </div>
+{% endblock %}

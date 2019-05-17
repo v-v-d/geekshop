@@ -2,6 +2,7 @@ from django import forms
 from authapp.models import ShopUser
 from authapp.forms import ShopUserEditForm
 from mainapp.models import Product, ProductCategory, Contacts
+from ordersapp.models import Order, OrderItem
 
 
 class ShopUserAdminEditForm(ShopUserEditForm):
@@ -37,6 +38,18 @@ class ProductEditForm(forms.ModelForm):
 class ContactsEditForm(forms.ModelForm):
     class Meta:
         model = Contacts
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = ''
+
+
+class OrderEditForm(forms.ModelForm):
+    class Meta:
+        model = Order
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

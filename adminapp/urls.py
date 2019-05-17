@@ -25,4 +25,9 @@ urlpatterns = [
     url(r'^contacts/update/(?P<pk>\d+)/$', adminapp.ContactsUpdateView.as_view(), name='contact_update'),
     url(r'^contacts/delete/(?P<pk>\d+)/$', adminapp.ContactsDeleteView.as_view(), name='contact_delete'),
 
+    url(r'^order/create/$', adminapp.OrderCreateView.as_view(), name='order_create'),
+    url(r'^order/read/$', adminapp.OrderListView.as_view(), name='orders'),
+    url(r'^order/read/(?P<pk>\d+)/$', adminapp.OrderReadDetailView.as_view(), name='order_read'),
+    url(r'^order/update/(?P<pk>\d+)/$', adminapp.OrderUpdateView.as_view(), name='order_update'),
+    url(r'^order/delete/(?P<pk>\d+)/$', adminapp.OrderDeleteView.as_view(), name='order_delete'),
 ]
