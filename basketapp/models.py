@@ -22,3 +22,7 @@ class Basket(models.Model):
     def get_products_total_price_by_user(self):
         user_basket = Basket.objects.filter(user_id=self.user)
         return sum([item.get_product_total_price for item in user_basket])
+
+    @staticmethod
+    def get_item(pk):
+        return __class__.objects.filter(pk=pk).first()

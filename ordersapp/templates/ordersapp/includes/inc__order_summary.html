@@ -33,12 +33,16 @@
             {{ user.username }}
         {% endif %}
     </div>
-    {% if basket.0 %}
+{#    {% if user_basket.0 %}#}
         <div class="order-h5">
-            <b>products total quantity:</b>&nbsp;<span class="order_total_quantity">{{ basket.0.total_quantity }}</span>
+            <b>products total quantity:</b>&nbsp;<span class="order_total_quantity">
+{#            {{ user_basket.0.get_products_total_quantity_by_user }}#}
+        </span>
         </div>
         <div class="order-h5">
-            <b>total price:</b>&nbsp;<span class="order_total_cost">{{ basket.0.total_cost }}</span>$
+            <b>total price:</b>&nbsp;<span class="order_total_cost">
+{#            {{ user_basket.0.get_products_total_price_by_user }}#}
+        </span>$
         </div>
-    {% endif %}
+{#    {% endif %}#}
 {% endif %}

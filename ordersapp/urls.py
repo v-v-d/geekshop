@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^create/$', ordersapp.OrderItemsCreate.as_view(), name='order_create'),
     url(r'^read/(?P<pk>\d+)/$', ordersapp.OrderRead.as_view(), name='order_read'),
     url(r'^update/(?P<pk>\d+)/$', ordersapp.OrderItemsUpdate.as_view(), name='order_update'),
+    url(r'^update/product/(?P<pk>\d+)/$', ordersapp.get_product_price, name='order_product_price'),
     url(r'^delete/(?P<pk>\d+)/$', ordersapp.OrderDelete.as_view(), name='order_delete'),
 ]

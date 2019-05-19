@@ -59,23 +59,19 @@ class IndexListView(ListView):
 
 
 # class ProductsListView(ListView):
-#     model = Product
+#     model = ProductCategory
 #     template_name = 'mainapp/products_list.html'
-#     pk = None
-#     paginate_by = 3
+#     # paginate_by = 3
 #
 #     def get_queryset(self):
-#         if self.pk:
-#             return Product.objects.filter(category__pk=self.pk, is_active=True, category__is_active=True).order_by('price')
+#         if self.kwargs:
+#             return get_object_or_404(ProductCategory, pk=self.kwargs['pk']).product_set.filter(is_active=True).order_by('price')
 #         else:
-#             return Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+#             return get_object_or_404(ProductCategory).product_set.filter(is_active=True).order_by('price')
 #
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
 #         context['page_title'] = 'Interior - products'
-#
-#     def get_template_names(self):
-#         pass
 
 
 def products(request, pk=None, page=1):

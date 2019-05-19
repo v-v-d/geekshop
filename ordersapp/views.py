@@ -7,8 +7,16 @@ from django.forms import inlineformset_factory
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 
+from basketapp.models import Basket
+from mainapp.models import Product
 from ordersapp.models import Order, OrderItem
 from ordersapp.forms import OrderItemForm
+
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, pre_delete
+
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 
 class OrderList(ListView):
@@ -26,7 +34,7 @@ class OrderList(ListView):
 class OrderItemsCreate(CreateView):
     model = Order
     fields = []
-    success_url = reverse_lazy('order:orders')
+    success_url = reverse_lazy('order:order_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -43,6 +51,7 @@ class OrderItemsCreate(CreateView):
                 for num, form in enumerate(formset.forms):
                     form.initial['product'] = basket_items[num].product
                     form.initial['quantity'] = basket_items[num].quantity
+                    form.initial['price'] = basket_items[num].product.price
             else:
                 formset = OrderFormSet()
 
@@ -90,7 +99,11 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             context['orderitems'] = OrderFormSet(self.request.POST, self.request.FILES, instance=self.object)
         else:
-            context['orderitems'] = OrderFormSet(instance=self.object)
+            formset = OrderFormSet(instance=self.object)
+            for form in formset.forms:
+                if form.instance.pk:
+                    form.initial['price'] = form.instance.product.price
+            context['orderitems'] = formset
 
         return context
 
@@ -127,3 +140,25 @@ def order_forming_complete(request, pk):
     order.save()
 
     return HttpResponseRedirect(reverse('order:order_list'))
+
+
+def get_product_price(request, pk):
+    if request.is_ajax():
+        product_price = get_object_or_404(Product, pk=int(pk)).price
+        context = {'price': product_price}
+        result = render_to_string('ordersapp/includes/inc__orderitems_price.html', context)
+        return JsonResponse({'result': result})
+
+
+@receiver(pre_save, sender=OrderItem)
+@receiver(pre_save, sender=Basket)
+def product_quantity_update_save(sender, instance, **kwargs):
+    instance.product.quantity -= instance.quantity - sender.get_item(instance.pk).quantity if instance.pk else instance.quantity
+    instance.product.save()
+
+
+@receiver(pre_delete, sender=OrderItem)
+@receiver(pre_delete, sender=Basket)
+def product_quantity_update_delete(sender, instance, **kwargs):
+    instance.product.quantity += instance.quantity
+    instance.product.save()
