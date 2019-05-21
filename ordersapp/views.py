@@ -15,7 +15,6 @@ from ordersapp.forms import OrderItemForm
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, pre_delete
 
-from django.template.loader import render_to_string
 from django.http import JsonResponse
 
 
@@ -144,10 +143,8 @@ def order_forming_complete(request, pk):
 
 def get_product_price(request, pk):
     if request.is_ajax():
-        product_price = get_object_or_404(Product, pk=int(pk)).price
-        context = {'price': product_price}
-        result = render_to_string('ordersapp/includes/inc__orderitems_price.html', context)
-        return JsonResponse({'result': result})
+        product = Product.objects.filter(pk=int(pk)).first()
+        return JsonResponse({'price': product.price}) if product else JsonResponse({'price': 0})
 
 
 @receiver(pre_save, sender=OrderItem)

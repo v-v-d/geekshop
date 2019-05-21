@@ -31,6 +31,10 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} ({self.category.name})'
 
+    @staticmethod
+    def get_items():
+        return Product.objects.filter(is_active=True).order_by('category', 'name')
+
 
 class Contacts(models.Model):
     class Meta:
