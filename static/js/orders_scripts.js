@@ -28,10 +28,20 @@ window.onload = function () {
         var targetName = row[0].querySelector('input[type="number"]').name;
         orderitemNum = parseInt(targetName.replace('orderitems-', '').replace('-quantity', ''));
         deltaQuantity = -quantityArr[orderitemNum];
-        orderSummaryUpdate(priceArr[orderitemNum], deltaQuantity);
+        quantityArr[orderitemNum] = 0;
+        if (!isNaN(priceArr[orderitemNum]) && !isNaN(deltaQuantity)) {
+            orderSummaryUpdate(priceArr[orderitemNum], deltaQuantity);
+        }
     }
 
     if (!orderTotalQuantity) {
+        orderSummaryRecalc();
+    }
+
+    function orderSummaryRecalc() {
+        orderTotalQuantity = 0;
+        orderTotalCost = 0;
+
         for (i = 0; i < totalForms; i++) {
             orderTotalQuantity += quantityArr[i];
             orderTotalCost += quantityArr[i] * priceArr[i];
@@ -68,17 +78,27 @@ window.onload = function () {
     });
 
     $orderForm.on('change', 'select', function (event) {
-        let targetHref = event.target;
+        orderitemNum = parseInt(event.target.name.replace('orderitems-', '').replace('-product', ''));
 
-        $.ajax({
-            url: "/order/update/product/" + targetHref.value + "/",
-            success: function (data) {
-                $('.' + targetHref.name.replace('product', 'price')).html(data.result);
-            }
-        });
+        if (event.target.value) {
+            $.ajax({
+                url: "/order/update/product/" + event.target.value,
+                success: function (data) {
+                    if (data.price) {
+                        priceArr[orderitemNum] = parseFloat(data.price);
+                        if (isNaN(quantityArr[orderitemNum])) {
+                            quantityArr[orderitemNum] = 0;
+                        }
+                        var currentTr = $orderForm.find('tr:eq(' + (orderitemNum + 1) + ')');
+                        currentTr.find('td:eq(2)').html(data.price);
 
-        event.preventDefault();
-
+                        if (isNaN(currentTr.find('input[type="number"]').val())) {
+                            currentTr.find('input[type="number"]').val(0);
+                        }
+                        orderSummaryRecalc();
+                    }
+                },
+            });
+        }
     });
-
 };

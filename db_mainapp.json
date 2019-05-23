@@ -1,0 +1,368 @@
+[
+  {
+    "model": "mainapp.productcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Home",
+      "description": "This is a description for HOME category",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Office",
+      "description": "This is a description for OFFICE category",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Furniture",
+      "description": "This is a description for FURNITURE category",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Modern",
+      "description": "This is a description for MODERN category",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 5,
+    "fields": {
+      "name": "Classic",
+      "description": "This is a description for CLASSIC category",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 1,
+    "fields": {
+      "category": 4,
+      "name": "Modern lamp",
+      "image": "products_images/product-1.jpg",
+      "short_desc": "This is a short description for Modern lamp product",
+      "description": "This is a full description for Modern lamp product",
+      "price": "250.00",
+      "quantity": 46,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 2,
+    "fields": {
+      "category": 5,
+      "name": "Classic Armchair",
+      "image": "products_images/product-2.jpg",
+      "short_desc": "This is a short description for Home Classic product",
+      "description": "This is a full description for Home Classic product",
+      "price": "799.00",
+      "quantity": 11,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "name": "Home Housewares",
+      "image": "products_images/product-3.jpg",
+      "short_desc": "This is a short description for Home Housewares product",
+      "description": "This is a full description for Home Housewares product",
+      "price": "199.00",
+      "quantity": 40,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 4,
+    "fields": {
+      "category": 2,
+      "name": "Office Chair",
+      "image": "products_images/product-4.jpg",
+      "short_desc": "This is a short description for Office Chair product",
+      "description": "This a is full description for Office Chair product",
+      "price": "520.00",
+      "quantity": 23,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 5,
+    "fields": {
+      "category": 4,
+      "name": "Modern Chandelier",
+      "image": "products_images/product-11.jpg",
+      "short_desc": "This is a short description for Modern Chandelier product",
+      "description": "This a is full description for Modern Chandelier product",
+      "price": "149.00",
+      "quantity": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 6,
+    "fields": {
+      "category": 1,
+      "name": "Home Chair",
+      "image": "products_images/product-21.jpg",
+      "short_desc": "This is a short description for Home Chair product",
+      "description": "This a is full description for Home Chair product",
+      "price": "34.00",
+      "quantity": 17,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 7,
+    "fields": {
+      "category": 1,
+      "name": "Home Lamp",
+      "image": "products_images/product-31.jpg",
+      "short_desc": "This is a short description for Home Lamp product",
+      "description": "This a is full description for Home Lamp product",
+      "price": "49.00",
+      "quantity": 101,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 8,
+    "fields": {
+      "category": 5,
+      "name": "Classic Lamp",
+      "image": "products_images/product-41.jpg",
+      "short_desc": "This is a short description for Classic Lamp product",
+      "description": "This a is full description for Classic Lamp product",
+      "price": "55.00",
+      "quantity": 43,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 9,
+    "fields": {
+      "category": 3,
+      "name": "Furniture Pounder",
+      "image": "products_images/product-5.jpg",
+      "short_desc": "This is a short description for Furniture Pounder product",
+      "description": "This a is full description for Furniture Pounder product",
+      "price": "57.00",
+      "quantity": 30,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 10,
+    "fields": {
+      "category": 3,
+      "name": "Furniture Vase",
+      "image": "products_images/product-6.jpg",
+      "short_desc": "This is a short description for Furniture Vase product",
+      "description": "This a is full description for Furniture Vase product",
+      "price": "19.00",
+      "quantity": 58,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 11,
+    "fields": {
+      "category": 4,
+      "name": "Modern Chair",
+      "image": "products_images/slider1.jpg",
+      "short_desc": "This is a short description for Modern Chair product",
+      "description": "This a is full description for Modern Chair product",
+      "price": "430.00",
+      "quantity": 17,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 12,
+    "fields": {
+      "category": 2,
+      "name": "Office lamp",
+      "image": "products_images/product-2-sm.jpg",
+      "short_desc": "This is a short description for Office lamp product",
+      "description": "This a is full description for Office lamp product",
+      "price": "60.00",
+      "quantity": 67,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 13,
+    "fields": {
+      "category": 5,
+      "name": "Classic sofa",
+      "image": "products_images/product-3-sm.jpg",
+      "short_desc": "This is a short description for Classic sofa product",
+      "description": "This a is full description for Classic sofa product",
+      "price": "830.00",
+      "quantity": 12,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 14,
+    "fields": {
+      "category": 5,
+      "name": "Classic clock",
+      "image": "products_images/product-4-sm.jpg",
+      "short_desc": "This is a short description for Classic clock product",
+      "description": "This a is full description for Classic clock product",
+      "price": "70.00",
+      "quantity": 34,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 15,
+    "fields": {
+      "category": 3,
+      "name": "Furniture lamp",
+      "image": "products_images/product-5-sm.jpg",
+      "short_desc": "This is a short description for Furniture lamp product",
+      "description": "This a is full description for Furniture lamp product",
+      "price": "120.00",
+      "quantity": 48,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 16,
+    "fields": {
+      "category": 1,
+      "name": "Home pillow",
+      "image": "products_images/product-1-lg.jpg",
+      "short_desc": "This is a short description for Home pillow product",
+      "description": "This a is full description for Home pillow product",
+      "price": "24.00",
+      "quantity": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 17,
+    "fields": {
+      "category": 2,
+      "name": "Office armchair",
+      "image": "products_images/promo-img.jpg",
+      "short_desc": "This is a short description for Office armchair product",
+      "description": "This a is full description for Office armchair product",
+      "price": "125.00",
+      "quantity": 23,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 18,
+    "fields": {
+      "category": 1,
+      "name": "Home table",
+      "image": "products_images/slider.jpg",
+      "short_desc": "This is a short description for Home table product",
+      "description": "This a is full description for Home table product",
+      "price": "399.00",
+      "quantity": 8,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 19,
+    "fields": {
+      "category": 4,
+      "name": "Modern pillow-chair",
+      "image": "products_images/slider-img.jpg",
+      "short_desc": "This is a short description for Modern pillow-chair product",
+      "description": "This a is full description for Modern pillow-chair product",
+      "price": "49.00",
+      "quantity": 26,
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.contacts",
+    "pk": 1,
+    "fields": {
+      "name": "California",
+      "phone": "1900 - 1234 -5678",
+      "email": "info-CA@interior.com",
+      "address": "12 W 1st St, 90001 Los Angeles, California",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.contacts",
+    "pk": 2,
+    "fields": {
+      "name": "New York",
+      "phone": "4610 - 8645 -7916",
+      "email": "info-NY@interior.com",
+      "address": "16th St, 1125 New York, New York",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.contacts",
+    "pk": 3,
+    "fields": {
+      "name": "Washington",
+      "phone": "4560 - 7346 -7412",
+      "email": "info-WA@interior.com",
+      "address": "4th St, 25301 Olympia, Washington",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.contacts",
+    "pk": 4,
+    "fields": {
+      "name": "Moscow",
+      "phone": "495 - 272 -7958",
+      "email": "info-MOW@interior.com",
+      "address": "2th Lenina St, 728465 Moscow, Russia",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.contacts",
+    "pk": 5,
+    "fields": {
+      "name": "Saint-Petersburg",
+      "phone": "812 - 466 -7423",
+      "email": "info-SP@interior.com",
+      "address": "2nd Kazantskaya St, 197745 Los Saint-Petersburg, Russia",
+      "is_active": true
+    }
+  }
+]

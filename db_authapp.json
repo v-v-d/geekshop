@@ -1,0 +1,134 @@
+[
+  {
+    "model": "authapp.shopuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$WtZl2sbz1q6f$QGSolwZG/03gS19j0XUm+XwdASUM6Izar6Me3t3E4Fc=",
+      "last_login": "2019-05-16T23:49:06.927Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2019-05-06T22:01:46Z",
+      "username": "django",
+      "avatar": "",
+      "age": 30,
+      "email": "django@geekshop.local",
+      "activation_key": "",
+      "activation_key_expires": "2019-05-08T22:01:46Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "authapp.shopuser",
+    "pk": 8,
+    "fields": {
+      "password": "!RLHy8ATv9HL3YzLlDdUspjGhkzeqChbAjaFFPMej",
+      "last_login": "2019-05-15T17:45:57.137Z",
+      "is_superuser": false,
+      "first_name": "Geek",
+      "last_name": "Shop",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-05-06T22:30:10.408Z",
+      "username": "geekshop.auth",
+      "avatar": "",
+      "age": null,
+      "email": "geekshop.auth@gmail.com",
+      "activation_key": "",
+      "activation_key_expires": "2019-05-08T22:30:10.408Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "authapp.shopuser",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$sIVdJ5SDKn0w$tu4jism9GJNRTn5vwlcFRcZ4hKxHKZLttYOsV2/jxIE=",
+      "last_login": "2019-05-15T17:45:06.421Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-05-08T22:20:58Z",
+      "username": "qweopqepoiqpoeqwepqo",
+      "avatar": "",
+      "age": 20,
+      "email": "v-v-d@bk.ru",
+      "activation_key": "3469419113cf5f926a9a44dad14436e6dacb3efc95ee6e8f66d3d9b3c053bc98",
+      "activation_key_expires": "2019-05-10T22:20:58Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "authapp.shopuser",
+    "pk": 11,
+    "fields": {
+      "password": "!BwqatjKyvbAIVusYq2PHutZvjKqzhusmpg6eNKWI",
+      "last_login": "2019-05-15T17:45:28.220Z",
+      "is_superuser": false,
+      "first_name": "\u0412\u0438\u043a\u0442\u043e\u0440",
+      "last_name": "\u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-05-08T22:38:31.214Z",
+      "username": "vasiliev_viktor",
+      "avatar": "users_avatars/pk_11_photo.jpg",
+      "age": null,
+      "email": "",
+      "activation_key": "",
+      "activation_key_expires": "2019-05-10T22:38:31.214Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 1,
+    "fields": {
+      "tagline": "",
+      "aboutMe": "",
+      "gender": "",
+      "user_url": "",
+      "user_lang": ""
+    }
+  },
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 8,
+    "fields": {
+      "tagline": "",
+      "aboutMe": "",
+      "gender": "",
+      "user_url": "",
+      "user_lang": ""
+    }
+  },
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 10,
+    "fields": {
+      "tagline": "",
+      "aboutMe": "",
+      "gender": "",
+      "user_url": "",
+      "user_lang": ""
+    }
+  },
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 11,
+    "fields": {
+      "tagline": "",
+      "aboutMe": "",
+      "gender": "M",
+      "user_url": "https://vk.com/vasiliev_viktor",
+      "user_lang": "\u0420\u043e\u0441\u0441\u0438\u044f"
+    }
+  }
+]

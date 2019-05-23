@@ -34,13 +34,9 @@
                                     {{ field }}
                                 {% else %}
                                     {% if field.value %}
-                                        <span class="orderitems-{{ forloop.parentloop.counter0 }}-price">
+                                        <div class="orderitems-{{ forloop.parentloop.counter0 }}-price">
                                             {{ field.value }}
-                                        </span>
-                                    {% else %}
-                                        <span class="orderitems-{{ forloop.parentloop.counter0 }}-price">
-                                            {% include 'ordersapp/includes/inc__orderitems_price.html' %}
-                                        </span>
+                                        </div>
                                     {% endif %}
                                 {% endif %}
                             </td>
