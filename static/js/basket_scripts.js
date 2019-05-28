@@ -35,7 +35,7 @@
 //
 
 window.onload = function () {
-    $('.basket_list').change( 'input[type="number"]',function (event) {
+    $('.basket_list').change( 'input[type="number"]', function (event) {
 
         let targetHref = event.target;
 

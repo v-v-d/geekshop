@@ -54,10 +54,10 @@ def basket_edit(request, pk, quantity):
 
         basket_items = Basket.objects.filter(user=request.user).select_related().order_by('product__category')
 
-        content = {
+        context = {
             'basket_items': basket_items,
         }
 
-        result = render_to_string('basketapp/includes/inc_basket_list.html', content)
+        result = render_to_string('basketapp/includes/inc_basket_list.html', context)
 
         return JsonResponse({'result': result})
