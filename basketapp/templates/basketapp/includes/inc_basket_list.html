@@ -56,10 +56,7 @@
             <h4 class="basket-totals-text"><b>Total:&nbsp;</b>${{ basket_items.0.get_products_total_price_by_user }}</h4>
         </div>
         <a class="basket-checkout-link" href="#">
-{#            <div class="basket-checkout-button">#}
-                <a href="{% url 'order:order_create' %}" class="basket-checkout-button">Checkout</a>
-
-            </div>
+            <a href="{% url 'order:order_create' %}" class="basket-checkout-button">Checkout</a>
         </a>
     </div>
 {% endif %}

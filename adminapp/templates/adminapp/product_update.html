@@ -10,7 +10,15 @@
                 Редактирование продукта
             {% endif %}
         </h4>
-        <a class="admin-new-item-button" href={% url 'admin_custom:products' category_pk %}>К списку продуктов ({{ category_name }})</a>
+        {% if request.resolver_match.url_name == 'product_create' %}
+            <a class="admin-new-item-button" href={% url 'admin_custom:products' view.kwargs.pk %}>
+                К списку продуктов ({{ category_name }})
+            </a>
+        {% else %}
+            <a class="admin-new-item-button" href={% url 'admin_custom:products' object.category.pk %}>
+                К списку продуктов ({{ object.category.name }})
+            </a>
+        {% endif %}
     </div>
 
     <form class="form-horizontal" method="post" enctype="multipart/form-data">

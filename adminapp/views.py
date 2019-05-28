@@ -24,7 +24,7 @@ class UsersListView(ListView):
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
-        context = super(UsersListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'админка/пользователи'
         return context
 
@@ -37,7 +37,7 @@ class UsersCreateView(CreateView):
     success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
-        context = super(UsersCreateView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'пользователи/создание'
         return context
 
@@ -50,7 +50,7 @@ class UsersUpdateView(UpdateView):
     success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
-        context = super(UsersUpdateView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'пользователи/редактирование'
         return context
 
@@ -62,7 +62,7 @@ class UsersDeleteView(DeleteView):
     success_url = reverse_lazy('admin_custom:users')
 
     def get_context_data(self, **kwargs):
-        context = super(UsersDeleteView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'пользователи/удаление'
         return context
 
@@ -81,7 +81,7 @@ class ProductCategoryListView(ListView):
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
-        context = super(ProductCategoryListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'админка/категории'
         return context
 
@@ -94,7 +94,7 @@ class ProductCategoryCreateView(CreateView):
     success_url = reverse_lazy('admin_custom:categories')
 
     def get_context_data(self, **kwargs):
-        context = super(ProductCategoryCreateView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'категории/создание'
         return context
 
@@ -107,7 +107,7 @@ class ProductCategoryUpdateView(UpdateView):
     success_url = reverse_lazy('admin_custom:categories')
 
     def get_context_data(self, **kwargs):
-        context = super(ProductCategoryUpdateView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'категории/редактирование'
         return context
 
@@ -119,7 +119,7 @@ class ProductCategoryDeleteView(DeleteView):
     success_url = reverse_lazy('admin_custom:categories')
 
     def get_context_data(self, **kwargs):
-        context = super(ProductCategoryDeleteView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'категории/удаление'
         return context
 
@@ -138,14 +138,12 @@ class ProductsListView(ListView):
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
-        context = super(ProductsListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'админка/продукты'
-        context['category_pk'] = self.kwargs['pk']
-        context['category_name'] = get_object_or_404(ProductCategory, pk=self.kwargs['pk']).name
         return context
 
     def get_queryset(self):
-        return super().get_queryset().filter(category_id=self.kwargs['pk'])
+        return super().get_queryset().filter(category_id=self.kwargs['pk']).select_related('category')
 
 
 @method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
@@ -155,14 +153,18 @@ class ProductCreateView(CreateView):
     form_class = ProductEditForm
 
     def get_context_data(self, **kwargs):
-        context = super(ProductCreateView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'продукт/создание'
-        context['category_pk'] = self.kwargs['pk']
+        # context['category_pk'] = self.kwargs['pk']
         context['category_name'] = get_object_or_404(ProductCategory, pk=self.kwargs['pk']).name
         return context
 
     def get_success_url(self):
         return reverse_lazy('admin_custom:products', kwargs=self.kwargs)
+
+    def get_initial(self):
+        self.initial['category'] = ProductCategory.objects.filter(pk=self.kwargs['pk']).first()
+        return self.initial
 
 
 @method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
@@ -171,7 +173,7 @@ class ProductReadDetailView(DetailView):
     template_name = 'adminapp/product_read.html'
 
     def get_context_data(self, **kwargs):
-        context = super(ProductReadDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['page_title'] = 'продукт/подробнее'
         return context
 
@@ -185,8 +187,6 @@ class ProductUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(ProductUpdateView, self).get_context_data(**kwargs)
         context['page_title'] = 'продукт/редактирование'
-        context['category_pk'] = get_object_or_404(Product, pk=self.kwargs['pk']).category.pk
-        context['category_name'] = get_object_or_404(Product, pk=self.kwargs['pk']).category.name
         return context
 
     def get_initial(self):

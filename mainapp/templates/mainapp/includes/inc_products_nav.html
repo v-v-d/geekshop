@@ -26,7 +26,7 @@
         {% for link in links_menu %}
 
             <li class="product-page-nav-list">
-                <a class="product-page-nav-link{% if category_pk == link.pk %}-active{% endif %}"
+                <a class="product-page-nav-link{% if product.category.pk == link.pk %}-active{% endif %}"
                 href="{% url 'main:category' link.pk %}">{{ link.name }}</a>
             </li>
 
@@ -34,3 +34,40 @@
     </ul>
 
 {% endif %}
+
+{#{% if request.resolver_match.url_name in 'products, catalog, category, page' %}#}
+{##}
+{#    <ul class="products-nav">#}
+{#        <li class="products-nav-list">#}
+{#            <a class="products-nav-link{% if category.name == 'ALL' %}-active{% endif %}"#}
+{#            href="{% url 'main:products' %}">All</a>#}
+{#        </li>#}
+{##}
+{#        {% for link in links_menu %}#}
+{##}
+{#            <li class="products-nav-list">#}
+{#                <a class="products-nav-link{% if request.resolver_match.kwargs.pk|add:'0' == link.pk %}-active{% endif %}"#}
+{#                href="{% url 'main:category' link.pk %}">{{ link.name }}</a>#}
+{#            </li>#}
+{##}
+{#        {% endfor %}#}
+{##}
+{#    </ul>#}
+{##}
+{#{% else %}#}
+{#    <ul class="product-page-nav">#}
+{#        <li class="product-page-nav-list">#}
+{#            <a class="product-page-nav-link" href="{% url 'main:products' %}">All</a>#}
+{#        </li>#}
+{##}
+{#        {% for link in links_menu %}#}
+{##}
+{#            <li class="product-page-nav-list">#}
+{#                <a class="product-page-nav-link{% if category_pk == link.pk %}-active{% endif %}"#}
+{#                href="{% url 'main:category' link.pk %}">{{ link.name }}</a>#}
+{#            </li>#}
+{##}
+{#        {% endfor %}#}
+{#    </ul>#}
+{##}
+{#{% endif %}#}

@@ -3,6 +3,8 @@ from django.urls import reverse, reverse_lazy
 from django.db import transaction
 
 from django.forms import inlineformset_factory
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -18,6 +20,7 @@ from django.db.models.signals import pre_save, pre_delete
 from django.http import JsonResponse
 
 
+@method_decorator(login_required(), name='dispatch')
 class OrderList(ListView):
     model = Order
 
@@ -30,6 +33,7 @@ class OrderList(ListView):
         return context
 
 
+@method_decorator(login_required(), name='dispatch')
 class OrderItemsCreate(CreateView):
     model = Order
     fields = []
@@ -76,6 +80,7 @@ class OrderItemsCreate(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required(), name='dispatch')
 class OrderRead(DetailView):
     model = Order
 
@@ -85,6 +90,7 @@ class OrderRead(DetailView):
         return context
 
 
+@method_decorator(login_required(), name='dispatch')
 class OrderItemsUpdate(UpdateView):
     model = Order
     fields = []
@@ -98,7 +104,7 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             context['orderitems'] = OrderFormSet(self.request.POST, self.request.FILES, instance=self.object)
         else:
-            formset = OrderFormSet(instance=self.object)
+            formset = OrderFormSet(instance=self.object, queryset=self.object.orderitems.select_related())
             for form in formset.forms:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.product.price

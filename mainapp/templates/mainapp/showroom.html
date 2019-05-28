@@ -10,34 +10,34 @@
     {% include 'mainapp/includes/inc_products_nav.html' %}
     <section class="product-page padding-site">
         <article class="product-slider">
-            <a href="/media/{{ hot_product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
-                <div class="product-img" style="background-image: url(/media/{{ hot_product.image|default:'products_images/default.svg' }})"></div>
+            <a href="/media/{{ product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
+                <div class="product-img" style="background-image: url(/media/{{ product.image|default:'products_images/default.svg' }})"></div>
             </a>
             <div class="product-mini-img-box">
-                <a href="/media/{{ hot_product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
-                    <div class="product-mini-img" style="background-image: url(/media/{{ hot_product.image|default:'products_images/default.svg' }})"></div>
+                <a href="/media/{{ product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ product.image|default:'products_images/default.svg' }})"></div>
                 </a>
-                <a href="/media/{{ hot_product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
-                    <div class="product-mini-img" style="background-image: url(/media/{{ hot_product.image|default:'products_images/default.svg' }})"></div>
+                <a href="/media/{{ product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ product.image|default:'products_images/default.svg' }})"></div>
                 </a>
-                <a href="/media/{{ hot_product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
-                    <div class="product-mini-img" style="background-image: url(/media/{{ hot_product.image|default:'products_images/default.svg' }})"></div>
+                <a href="/media/{{ product.image|default:'products_images/default.svg'|default:'products_images/default.svg' }}" target="_blank">
+                    <div class="product-mini-img" style="background-image: url(/media/{{ product.image|default:'products_images/default.svg' }})"></div>
                 </a>
             </div>
         </article>
         <article class="product-description">
-            <h2 class="product-name">{{ hot_product.name }}</h2>
+            <h2 class="product-name">{{ product.name }}</h2>
             <h3 class="product-second-name">Hot Deal</h3>
             <div class="product-price">
                 <p class="price-currency">$ </p>
-                <p class="price-num">{{ hot_product.price }}</p>
+                <p class="price-num">{{ product.price }}</p>
                 <p class="price-value">/sq</p>
             </div>
-            <a href="{% url 'basket:add' hot_product.pk %}" class="product-button">
+            <a href="{% url 'basket:add' product.pk %}" class="product-button">
                 order&nbsp;us <img class="product-button-arrow" src="{% static 'img/arrow-product.svg' %}" alt="arrow">
             </a>
             <div class="product-details">
-                <p class="paragraph">{{ hot_product.description }}</p>
+                <p class="paragraph">{{ product.description }}</p>
                 <!--
                 <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do&nbsp;eiusmod tempor incididunt ut&nbsp;labore</p>
                 <p class="paragraph"> et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad&nbsp;minim veniam, quis nostrud exercitation ullamco laboris nisi ut&nbsp;aliquip ex&nbsp;ea&nbsp;commodo consequat.</p>
@@ -54,17 +54,17 @@
     <section class="related-products padding-site">
         <section class="related-products-menu">
             <p class="related-products-text">Related Products</p>
-            <a href="{% url 'main:category' category_pk %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
+            <a href="{% url 'main:category' product.category.pk %}" class="explore-link">explore all <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </section>
         <section class="related-products-content">
-            {% for product in same_products %}
-                <article class="related-product" style="background-image: url(/media/{{ product.image|default:'products_images/default.svg' }})">
+            {% for same_product in same_products %}
+                <article class="related-product" style="background-image: url(/media/{{ same_product.image|default:'products_images/default.svg' }})">
                     <div class="product-in-box-content">
-                        <a class="product-in-box-link" href="{% url 'main:product-details' product.pk %}">
+                        <a class="product-in-box-link" href="{% url 'main:product-details' same_product.pk %}">
                             <img class="product-in-box-link-arrow" src="{% static 'img/arrow.svg' %}" alt="arrow">
                         </a>
-                        <h3 class="product-in-box-name">{{ product.name }}</h3>
-                        <p class="product-in-box-details">{{ product.description }}</p>
+                        <h3 class="product-in-box-name">{{ same_product.name }}</h3>
+                        <p class="product-in-box-details">{{ same_product.description }}</p>
                     </div>
                 </article>
             {% endfor %}

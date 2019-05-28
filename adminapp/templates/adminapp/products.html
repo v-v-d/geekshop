@@ -4,8 +4,8 @@
 {% block content %}
     <div class="products_list">
         <div class="admin-new-item">
-            <h4 class="admin-item-name">Категория:&nbsp;<b>{{ category_name }}</b></h4>
-            <a class="admin-new-item-button" href= {% url 'admin_custom:product_create' category_pk %}>Создать новый продукт</a>
+            <h4 class="admin-item-name">Категория:&nbsp;<b>{{ page_obj.0.category.name }}</b></h4>
+            <a class="admin-new-item-button" href= {% url 'admin_custom:product_create' view.kwargs.pk %}>Создать новый продукт</a>
         </div>
 
         {% for object in page_obj %}

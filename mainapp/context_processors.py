@@ -1,2 +1,3 @@
 def user_basket(request):
-    return {'user_basket': request.user.basket.all() if request.user.is_authenticated else []}
+    user_basket = request.user.basket.all().select_related('product__category') if request.user.is_authenticated else []
+    return {'user_basket': user_basket}

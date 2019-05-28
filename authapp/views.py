@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from authapp.models import ShopUser
 
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.decorators import login_required
 
 
 def login(request):
@@ -38,6 +38,7 @@ def login(request):
     return render(request, 'authapp/login.html', context)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:index'))
@@ -60,15 +61,7 @@ def register(request):
     return render(request, 'authapp/register.html', context)
 
 
-class UserUpdateView(UpdateView):
-    model = ShopUser
-    form_class = ShopUserEditForm
-    template_name = 'authapp/edit.html'
-
-    def get_queryset(self):
-        return
-
-
+@login_required
 def edit(request):
     title = 'edit'
 

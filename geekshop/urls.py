@@ -15,11 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-import mainapp.views as mainapp
 from django.conf import settings
 from django.conf.urls.static import static
-if settings.DEBUG:
-    import debug_toolbar
 
 urlpatterns = [
     url(r'^', include('mainapp.urls', namespace='main')),
@@ -29,8 +26,12 @@ urlpatterns = [
     url(r'^', include('social_django.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
     url(r'^order/', include('ordersapp.urls', namespace='order')),
-    # url(r'^__debug__/', include(debug_toolbar.urls)),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls))]
