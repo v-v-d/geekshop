@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
@@ -156,12 +157,17 @@ def get_product_price(request, pk):
 @receiver(pre_save, sender=OrderItem)
 @receiver(pre_save, sender=Basket)
 def product_quantity_update_save(sender, instance, **kwargs):
-    instance.product.quantity -= instance.quantity - sender.get_item(instance.pk).quantity if instance.pk else instance.quantity
+    if instance.pk:
+        instance.product.quantity = F('quantity') + sender.get_item(instance.pk).quantity - instance.quantity
+    else:
+        instance.product.quantity = F('quantity') + instance.quantity
+    # instance.product.quantity -= instance.quantity - sender.get_item(instance.pk).quantity if instance.pk else instance.quantity
     instance.product.save()
 
 
 @receiver(pre_delete, sender=OrderItem)
 @receiver(pre_delete, sender=Basket)
 def product_quantity_update_delete(sender, instance, **kwargs):
-    instance.product.quantity += instance.quantity
+    instance.product.quantity = F('quantity') + instance.quantity
+    # instance.product.quantity += instance.quantity
     instance.product.save()
