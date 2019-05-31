@@ -13,6 +13,20 @@
         </div>
         <div class="order-h5"><b>updated:</b>&nbsp;{{ object.updated|date:"Y-m-d H:i:s" }}</div>
         <div class="order-h5"><b>status:</b>&nbsp;{{ object.get_status_display }}</div>
+{#        {% with object_summary=object.get_summary %}#}
+{#            <div class="order-h5">#}
+{#                products total quantity:#}
+{#                <span class="order_total_quantity">#}
+{#                    {{ object_summary.total_quantity }}#}
+{#                </span>#}
+{#            </div>#}
+{#            <div class="order-h4">#}
+{#                total price:#}
+{#                <span class="order_total_cost">#}
+{#                    {{ object_summary.total_price }}#}
+{#                </span>&nbsp;$#}
+{#            </div>#}
+{#        {% endwith %}#}
         <div class="order-h5">
             <b>products total quantity:</b>&nbsp;<span class="order_total_quantity">{{ object.get_total_quantity }}</span>
         </div>

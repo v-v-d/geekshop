@@ -53,6 +53,13 @@ class Order(models.Model):
         self.status, self.is_active = 'CNC', False
         self.save()
 
+    def get_summary(self):
+        items = self.orderitems.select_related()
+        return {
+            'total_price': sum([i.quantity * i.product.price for i in items]),
+            'total_quantity': sum([i.quantity for i in items]),
+        }
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name="orderitems", on_delete=models.CASCADE)

@@ -59,6 +59,7 @@ if DEBUG:
     ])
 
 MIDDLEWARE = [
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,6 +72,8 @@ MIDDLEWARE = [
 
 if DEBUG:
     MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
+# MIDDLEWARE.append('django.middleware.cache.FetchFromCacheMiddleware')
 
 if DEBUG:
    DEBUG_TOOLBAR_CONFIG = {
@@ -240,3 +243,16 @@ EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = config.get('smtp', 'EMAIL_USE_SSL')
 
 SILENCED_SYSTEM_CHECKS = ['auth.W004']
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 120
+CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
+
+CACHES = {
+   'default': {
+       'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+       'LOCATION': '127.0.0.1:11211',
+   }
+}
+
+LOW_CACHE = True
