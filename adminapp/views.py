@@ -1,12 +1,15 @@
 from django.db import transaction
+from django.db.models import F
 from django.forms import inlineformset_factory
 
 from authapp.models import ShopUser
+from geekshop import settings
 from mainapp.models import Product, ProductCategory, Contacts
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import HttpResponseRedirect, get_object_or_404
 from authapp.forms import ShopUserRegisterForm
-from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm, ContactsEditForm, OrderEditForm
+from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm, ContactsEditForm, \
+    OrderEditForm
 
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
@@ -14,6 +17,10 @@ from django.utils.decorators import method_decorator
 
 from ordersapp.forms import OrderItemForm
 from ordersapp.models import Order, OrderItem
+
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
+from django.db import connection
 
 
 @method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
@@ -110,6 +117,16 @@ class ProductCategoryUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'категории/редактирование'
         return context
+
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                self.object.product_set.update(price=F('price') * (1 - discount / 100))
+                if settings.DEBUG:
+                    db_profile_by_type(self.__class__, 'UPDATE', connection.queries)
+
+        return super().form_valid(form)
 
 
 @method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
@@ -381,3 +398,19 @@ class OrderDeleteView(DeleteView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'заказы/удаление'
         return context
+
+
+def db_profile_by_type(prefix, type, queries):
+    print(f'db_profile {type} for {prefix}:')
+    [print(query['sql']) for query in queries if type in query['sql']]
+
+
+@receiver(pre_save, sender=ProductCategory)
+def product_is_active_update_productcategory_save(sender, instance, **kwargs):
+    if instance.pk:
+        if instance.is_active:
+            instance.product_set.update(is_active=True)
+        else:
+            instance.product_set.update(is_active=False)
+        if settings.DEBUG:
+            db_profile_by_type(sender, 'UPDATE', connection.queries)

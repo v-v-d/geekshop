@@ -13,7 +13,7 @@
                 <div class="basket-header">
                     <div class="basket-body-name">
                         <img class="basket-bag" src="{% static 'img/bag.svg' %}" alt="bag">
-                        <h3 class="basket-body-name-h3"></h3>Shopping Cart&nbsp;
+                        <h3 class="basket-body-name-h3"></h3>Shopping Cart
 
                         {% if request.user.first_name %}
                             ({{ request.user.first_name|truncatechars_html:15|title }})
